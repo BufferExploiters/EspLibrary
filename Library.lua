@@ -989,7 +989,7 @@ local GetService = setmetatable({}, {
                     ['Weapon'] = Table['Texts']['Weapon'];
                 }
                 --
-                if Cfg['Enabled'] then
+                if Cfg['Weapon']['Enabled'] then
                     Objects['Weapon'].Visible = true;
                     Objects['Weapon'].Text = Data['CurrentTool'] or 'none';
                     --
