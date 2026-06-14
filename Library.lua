@@ -30,6 +30,7 @@ local GetService = setmetatable({}, {
     end
 
     CameraCache();
+    
     Camera:GetPropertyChangedSignal("FieldOfView"):Connect(CameraCache);
 	Camera:GetPropertyChangedSignal("ViewportSize"):Connect(CameraCache);
 
@@ -55,17 +56,17 @@ local GetService = setmetatable({}, {
 
 			['Bounding Box'] = {
 				['Enabled'] = true,
-				['IncludeAcsessories'] = true,
+				['IncludeAcsessories'] = false,
 
-				['BoxY'] = 0,
+				['BoxY'] = 4,
 				['BoxX'] = 0,
 			},
 
 			['Box Glow'] = {
-				['Enabled'] = true,
+				['Enabled'] = false,
 
-				['Top'] = Color3.fromRGB(255, 255, 255),
-				['Bot'] = Color3.fromRGB(255, 255, 255),
+				['Top'] = Color3.fromRGB(255, 0, 0),
+				['Bot'] = Color3.fromRGB(255, 0, 0),
 				['Transparency'] = {1, 0.5},
 			},
 
@@ -74,13 +75,13 @@ local GetService = setmetatable({}, {
 
 				['Top'] = Color3.fromRGB(255, 255, 255),
 				['Bot'] = Color3.fromRGB(255, 255, 255),
-				['Transparency'] = {1, 1},
+				['Transparency'] = {1, 0.5},
 			},
 		},
 
 		['Bars'] = {
 			['Health Bar'] = {
-				['Enabled'] = false,
+				['Enabled'] = true,
 
 				['Top'] = Color3.fromRGB(0, 255, 0),
 				['Mid'] = Color3.fromRGB(255, 165, 0),
@@ -88,7 +89,7 @@ local GetService = setmetatable({}, {
 			},
 
 			['Armor Bar'] = {
-				['Enabled'] = false,
+				['Enabled'] = true,
 
 				['Top'] = Color3.fromRGB(135, 206, 250),
 				['Mid'] = Color3.fromRGB(25, 25, 112),
@@ -156,11 +157,13 @@ local GetService = setmetatable({}, {
 		})
 
 		Library.ProggyClean = Font.new(Fonts.ProggyClean,Enum.FontWeight.Regular,Enum.FontStyle.Normal);
+
 		Library.Tahoma = Font.new(Fonts.Tahoma, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+        
 		Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 	end
-
-	Library.Config = Table
+	
+	Library.Config = Table;
     Library.__index = Library;
 
     function Library:CreateObjects(Name, Prop)
@@ -996,7 +999,7 @@ local GetService = setmetatable({}, {
                 --
             end
 
-            function Library:AddTarget(Player)
+  function Library:AddTarget(Player)
                 if Player == LocalPlayer then
                     return
                 end;
@@ -1423,7 +1426,6 @@ local GetService = setmetatable({}, {
 
                         local FillTop = BoxesCfg['Filled']['Top']
                         local FillBot = BoxesCfg['Filled']['Bot']
-			
                         local FillT1 = BoxesCfg['Filled']['Transparency'][1]
                         local FillT2 = BoxesCfg['Filled']['Transparency'][2]
 
@@ -1573,4 +1575,5 @@ local GetService = setmetatable({}, {
                     Clear(self['Cache']);
                 end
             end
+
 			return Library
