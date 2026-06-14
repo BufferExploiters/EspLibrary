@@ -1573,3 +1573,4 @@ local GetService = setmetatable({}, {
                     Clear(self['Cache']);
                 end
             end
+			return Library
