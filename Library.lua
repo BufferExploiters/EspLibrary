@@ -921,6 +921,10 @@
   do
       function Library:UpdateHealth(Data)
           local Objects = Data['Objects']
+    
+          if not Objects['HealthBarOutline'] then
+            return
+          end
   
           local Cfg = {
               ['Health'] = Config['Bars']['Health Bar'],
@@ -980,7 +984,11 @@
   
       function Library:UpdateWeapon(Data)
           local Objects = Data['Objects']
-  
+    
+           if not Objects['Weapon'] then
+              return
+          end
+    
           local Cfg = {
               ['Weapon'] = Config['Texts']['Weapon'],
           }
