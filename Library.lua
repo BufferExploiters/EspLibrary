@@ -1,5 +1,4 @@
 
-
 if getgenv().Library and getgenv().Library.Unload then
     pcall(getgenv().Library.Unload, getgenv().Library)
 end
@@ -31,7 +30,6 @@ local GetService = setmetatable({}, {
     end
 
     CameraCache();
-    
     Camera:GetPropertyChangedSignal("FieldOfView"):Connect(CameraCache);
 	Camera:GetPropertyChangedSignal("ViewportSize"):Connect(CameraCache);
 
@@ -57,17 +55,17 @@ local GetService = setmetatable({}, {
 
 			['Bounding Box'] = {
 				['Enabled'] = true,
-				['IncludeAcsessories'] = false,
+				['IncludeAcsessories'] = true,
 
-				['BoxY'] = 4,
+				['BoxY'] = 0,
 				['BoxX'] = 0,
 			},
 
 			['Box Glow'] = {
-				['Enabled'] = false,
+				['Enabled'] = true,
 
-				['Top'] = Color3.fromRGB(255, 0, 0),
-				['Bot'] = Color3.fromRGB(255, 0, 0),
+				['Top'] = Color3.fromRGB(255, 255, 255),
+				['Bot'] = Color3.fromRGB(255, 255, 255),
 				['Transparency'] = {1, 0.5},
 			},
 
@@ -76,13 +74,13 @@ local GetService = setmetatable({}, {
 
 				['Top'] = Color3.fromRGB(255, 255, 255),
 				['Bot'] = Color3.fromRGB(255, 255, 255),
-				['Transparency'] = {1, 0.5},
+				['Transparency'] = {1, 1},
 			},
 		},
 
 		['Bars'] = {
 			['Health Bar'] = {
-				['Enabled'] = true,
+				['Enabled'] = false,
 
 				['Top'] = Color3.fromRGB(0, 255, 0),
 				['Mid'] = Color3.fromRGB(255, 165, 0),
@@ -90,7 +88,7 @@ local GetService = setmetatable({}, {
 			},
 
 			['Armor Bar'] = {
-				['Enabled'] = true,
+				['Enabled'] = false,
 
 				['Top'] = Color3.fromRGB(135, 206, 250),
 				['Mid'] = Color3.fromRGB(25, 25, 112),
@@ -158,13 +156,11 @@ local GetService = setmetatable({}, {
 		})
 
 		Library.ProggyClean = Font.new(Fonts.ProggyClean,Enum.FontWeight.Regular,Enum.FontStyle.Normal);
-
 		Library.Tahoma = Font.new(Fonts.Tahoma, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-        
 		Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 	end
-	
-	Library.Config = Table;
+
+	Library.Config = Table
     Library.__index = Library;
 
     function Library:CreateObjects(Name, Prop)
@@ -1074,46 +1070,46 @@ local GetService = setmetatable({}, {
                     Data['BindHealth'] = HealthHandler.BindHealth
                 end
                 
-				local ToolHandler = { }; do
-				    function ToolHandler.BindTool(Character)
-				        if Data['Conns']['ToolAdded'] then
-				            Data['Conns']['ToolAdded']:Disconnect();
-				        end;
-				        --
-				        if Data['Conns']['ToolRemoved'] then
-				            Data['Conns']['ToolRemoved']:Disconnect();
-				        end;
-				
-				        --
-				        for _, Child in Character:GetChildren() do
-				            if Child:IsA("Tool") then
-				                Data['CurrentTool'] = Child.Name;
-				                break
-				            end
-				            --
-				        end
-				
-				        Library:UpdateWeapon(Data)
-				
-				        Data['Conns']['ToolAdded'] = Character.ChildAdded:Connect(function(Child)
-				            if Child:IsA('Tool') then
-				                Data['CurrentTool'] = Child.Name;
-				                Library:UpdateWeapon(Data);
-				            end
-				            --
-				        end)
-				
-				        Data['Conns']['ToolRemoved'] = Character.ChildRemoved:Connect(function(Child)
-				            if Child:IsA('Tool') then
-				                Data['CurrentTool'] = nil;
-				                Library:UpdateWeapon(Data);
-				            end
-				            --
-				        end)
-				    end
-				
-				    Data['BindTool'] = ToolHandler.BindTool;
-				end
+                local ToolHandler = { }; do
+                    function ToolHandler.BindTool(Character)
+                        if Data['Conns']['ToolAdded'] then
+                            Data['Conns']['ToolAdded']:Disconnect();
+                        end;
+                        --
+                        if Data['Conns']['ToolRemoved'] then
+                            Data['Conns']['ToolRemoved']:Disconnect();
+                        end;
+
+                        --
+                        for _, Child in Data['Children'] do
+                            if Child:IsA("Tool") then
+                                Data['CurrentTool'] = Child.Name;
+                                break
+                            end
+                            --
+                        end
+
+                        Library:UpdateWeapon(Data)
+
+                        Data['Conns']['ToolAdded'] = Character.ChildAdded:Connect(function(Child)
+                            if Child:IsA('Tool') then
+                                Data['CurrentTool'] = Child.Name;
+                                Library:UpdateWeapon(Data);
+                            end
+                            --
+                        end)
+
+                        Data['Conns']['ToolRemoved'] = Character.ChildRemoved:Connect(function(Child)
+                            if Child:IsA('Tool') then
+                                Data['CurrentTool'] = nil;
+                                Library:UpdateWeapon(Data);
+                            end
+                            --
+                        end)
+                    end
+
+                    Data['BindTool'] = ToolHandler.BindTool;
+                end
 
                 local ChildHandler = { }; do
                     function ChildHandler.BindChildren(Character)
@@ -1427,6 +1423,7 @@ local GetService = setmetatable({}, {
 
                         local FillTop = BoxesCfg['Filled']['Top']
                         local FillBot = BoxesCfg['Filled']['Bot']
+			
                         local FillT1 = BoxesCfg['Filled']['Transparency'][1]
                         local FillT2 = BoxesCfg['Filled']['Transparency'][2]
 
@@ -1576,5 +1573,3 @@ local GetService = setmetatable({}, {
                     Clear(self['Cache']);
                 end
             end
-
-			return Library
