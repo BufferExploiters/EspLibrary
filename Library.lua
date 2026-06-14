@@ -818,6 +818,8 @@
                   LineJoinMode = Enum.LineJoinMode.Miter,
               })
           end
+  
+          Data['Ready'] = true
       end
   end
   
@@ -920,6 +922,10 @@
   
   do
       function Library:UpdateHealth(Data)
+          if not Data['Ready'] then
+              return
+          end
+  
           local Objects = Data['Objects']
   
           local Cfg = {
@@ -979,6 +985,10 @@
       end
   
       function Library:UpdateWeapon(Data)
+          if not Data['Ready'] then
+              return
+          end
+  
           local Objects = Data['Objects']
   
           local Cfg = {
@@ -1016,6 +1026,7 @@
               ['MaxArmor'] = 100,
               ['CurrentTool'] = nil,
               ['Alive'] = false,
+              ['Ready'] = false,
               ['LastW'] = nil,
               ['LastH'] = nil,
               ['LastX'] = nil,
@@ -1039,7 +1050,7 @@
               ['LastNameColor'] = nil,
           }
   
-          self:InitEsp(Data)
+          self['Cache'][Player] = Data
   
           local HealthHandler = {}; do
               function HealthHandler.BindHealth(Humanoid)
@@ -1150,10 +1161,14 @@
                   Data['JumpActive'] = false
                   Data['WalkActive'] = false
   
-                  Objects['WalkFlag'].Visible = false
-                  Objects['JumpFlag'].Visible = false
+                  if Data['Ready'] then
+                      Objects['WalkFlag'].Visible = false
+                      Objects['JumpFlag'].Visible = false
+                  end
   
                   Data['Conns']['MoveDir'] = Humanoid:GetPropertyChangedSignal('MoveDirection'):Connect(function()
+                      if not Data['Ready'] then return end
+  
                       local Walking = Humanoid.MoveDirection ~= ZeroVector3
   
                       if Walking and not Data['WalkActive'] then
@@ -1178,6 +1193,8 @@
                   end)
   
                   Data['Conns']['StateChange'] = Humanoid.StateChanged:Connect(function(_, NewState)
+                      if not Data['Ready'] then return end
+  
                       local Jumping = NewState == Enum.HumanoidStateType.Jumping or NewState == Enum.HumanoidStateType.Freefall
   
                       if Jumping and not Data['JumpActive'] then
@@ -1243,18 +1260,22 @@
   
               local InitCharacter = Player.Character
   
-              if InitCharacter and InitCharacter.Parent then
-                  local RootPart = FindFirstChild(InitCharacter, 'HumanoidRootPart')
-                  local Humanoid = FindFirstChildOfClass(InitCharacter, 'Humanoid')
+              Spawn(function()
+                  Library:InitEsp(Data)
   
-                  if RootPart and Humanoid then
-                      CharacterHandler.OnCharacter(InitCharacter)
-                  else
-                      Spawn(function()
+                  if InitCharacter and InitCharacter.Parent then
+                      local RootPart = FindFirstChild(InitCharacter, 'HumanoidRootPart')
+                      local Humanoid = FindFirstChildOfClass(InitCharacter, 'Humanoid')
+  
+                      if RootPart and Humanoid then
                           CharacterHandler.OnCharacter(InitCharacter)
-                      end)
+                      else
+                          Spawn(function()
+                              CharacterHandler.OnCharacter(InitCharacter)
+                          end)
+                      end
                   end
-              end
+              end)
   
               Data['Conns']['CharAdded'] = Player.CharacterAdded:Connect(function(Character)
                   Spawn(function()
@@ -1262,8 +1283,6 @@
                   end)
               end)
           end
-  
-          self['Cache'][Player] = Data
       end
   
       function Library:RemoveTarget(Player)
@@ -1290,6 +1309,10 @@
   
   do
       function Library:Update(Player, Data)
+          if not Data['Ready'] then
+              return
+          end
+  
           local Objects = Data['Objects']
   
           if not Data['Alive'] or not Data['RootPart'] then
@@ -1496,7 +1519,7 @@
       Library:CreateThreads('Renderer', RunService.RenderStepped, function()
           if not Config['Enabled'] then
               for _, Data in Library['Cache'] do
-                  if Data['Objects']['TargetHolder'].Visible then
+                  if Data['Ready'] and Data['Objects']['TargetHolder'].Visible then
                       Data['Objects']['TargetHolder'].Visible = false
                   end
               end
@@ -1561,4 +1584,4 @@
       end
   end
   
-  return Library  
+  return Library
