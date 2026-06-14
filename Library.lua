@@ -1039,7 +1039,9 @@
               ['LastNameColor'] = nil,
           }
   
-          self:InitEsp(Data)
+          task.defer(function()
+              self:InitEsp(Data)
+          end)
   
           local HealthHandler = {}; do
               function HealthHandler.BindHealth(Humanoid)
