@@ -1074,46 +1074,46 @@ local GetService = setmetatable({}, {
                     Data['BindHealth'] = HealthHandler.BindHealth
                 end
                 
-                local ToolHandler = { }; do
-                    function ToolHandler.BindTool(Character)
-                        if Data['Conns']['ToolAdded'] then
-                            Data['Conns']['ToolAdded']:Disconnect();
-                        end;
-                        --
-                        if Data['Conns']['ToolRemoved'] then
-                            Data['Conns']['ToolRemoved']:Disconnect();
-                        end;
-
-                        --
-                        for _, Child in Data['Children'] do
-                            if Child:IsA("Tool") then
-                                Data['CurrentTool'] = Child.Name;
-                                break
-                            end
-                            --
-                        end
-
-                        Library:UpdateWeapon(Data)
-
-                        Data['Conns']['ToolAdded'] = Character.ChildAdded:Connect(function(Child)
-                            if Child:IsA('Tool') then
-                                Data['CurrentTool'] = Child.Name;
-                                Library:UpdateWeapon(Data);
-                            end
-                            --
-                        end)
-
-                        Data['Conns']['ToolRemoved'] = Character.ChildRemoved:Connect(function(Child)
-                            if Child:IsA('Tool') then
-                                Data['CurrentTool'] = nil;
-                                Library:UpdateWeapon(Data);
-                            end
-                            --
-                        end)
-                    end
-
-                    Data['BindTool'] = ToolHandler.BindTool;
-                end
+				local ToolHandler = { }; do
+				    function ToolHandler.BindTool(Character)
+				        if Data['Conns']['ToolAdded'] then
+				            Data['Conns']['ToolAdded']:Disconnect();
+				        end;
+				        --
+				        if Data['Conns']['ToolRemoved'] then
+				            Data['Conns']['ToolRemoved']:Disconnect();
+				        end;
+				
+				        --
+				        for _, Child in Character:GetChildren() do
+				            if Child:IsA("Tool") then
+				                Data['CurrentTool'] = Child.Name;
+				                break
+				            end
+				            --
+				        end
+				
+				        Library:UpdateWeapon(Data)
+				
+				        Data['Conns']['ToolAdded'] = Character.ChildAdded:Connect(function(Child)
+				            if Child:IsA('Tool') then
+				                Data['CurrentTool'] = Child.Name;
+				                Library:UpdateWeapon(Data);
+				            end
+				            --
+				        end)
+				
+				        Data['Conns']['ToolRemoved'] = Character.ChildRemoved:Connect(function(Child)
+				            if Child:IsA('Tool') then
+				                Data['CurrentTool'] = nil;
+				                Library:UpdateWeapon(Data);
+				            end
+				            --
+				        end)
+				    end
+				
+				    Data['BindTool'] = ToolHandler.BindTool;
+				end
 
                 local ChildHandler = { }; do
                     function ChildHandler.BindChildren(Character)
