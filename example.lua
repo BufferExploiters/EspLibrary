@@ -1,6 +1,6 @@
 local Esp = loadstring(game:HttpGet("YOUR_RAW_URL_HERE"))()
 
-local Config = Esp.Config
+local Config = Esp.Table
 
 Config['Enabled'] = true
 Config['Distance'] = 500
