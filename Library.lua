@@ -952,7 +952,7 @@
                 Objects['ArmorBarText'].Visible = false;
             end
         end
-        
+
         function Library:UpdateWeapon(Data)
             local Objects = Data['Objects'];
             local WeaponCfg = Table['Texts']['Weapon'];
@@ -1469,6 +1469,52 @@
             else
                 if Objects['Distance'].Visible then
                     Objects['Distance'].Visible = false
+                end
+            end
+
+            local HealthCfg = Table['Bars']['Health Bar']
+            if HealthCfg['Enabled'] and Data['Humanoid'] then
+                local GradTop = HealthCfg['Top']
+                local GradMid = HealthCfg['Mid']
+                local GradBot = HealthCfg['Bot']
+
+                if Data['LastHealthTop'] ~= GradTop or Data['LastHealthMid'] ~= GradMid or Data['LastHealthBot'] ~= GradBot then
+                    Objects['HealthBarGradient'].Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, GradTop),
+                        ColorSequenceKeypoint.new(0.5, GradMid),
+                        ColorSequenceKeypoint.new(1, GradBot),
+                    })
+                    Data['LastHealthTop'] = GradTop
+                    Data['LastHealthMid'] = GradMid
+                    Data['LastHealthBot'] = GradBot
+                end
+            end
+
+            local ArmorCfg = Table['Bars']['Armor Bar']
+            if ArmorCfg['Enabled'] and Data['Humanoid'] then
+                local GradTop = ArmorCfg['Top']
+                local GradMid = ArmorCfg['Mid']
+                local GradBot = ArmorCfg['Bot']
+
+                if Data['LastArmorTop'] ~= GradTop or Data['LastArmorMid'] ~= GradMid or Data['LastArmorBot'] ~= GradBot then
+                    Objects['ArmorBarGradient'].Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, GradTop),
+                        ColorSequenceKeypoint.new(0.5, GradMid),
+                        ColorSequenceKeypoint.new(1, GradBot),
+                    })
+                    Data['LastArmorTop'] = GradTop
+                    Data['LastArmorMid'] = GradMid
+                    Data['LastArmorBot'] = GradBot
+                end
+            end
+
+            local WeaponCfg = TextsCfg['Weapon']
+            
+            if WeaponCfg['Enabled'] then
+                local WeaponColor = WeaponCfg['Color']
+                if Data['LastWeaponColor'] ~= WeaponColor then
+                    Objects['Weapon'].TextColor3 = WeaponColor
+                    Data['LastWeaponColor'] = WeaponColor
                 end
             end
         end
