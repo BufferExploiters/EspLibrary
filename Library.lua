@@ -983,7 +983,7 @@ local Table = Library['Table'];
                 --
             end
 
-  function Library:AddTarget(Player)
+  		function Library:AddTarget(Player)
                 if Player == LocalPlayer then
                     return
                 end;
@@ -1068,13 +1068,14 @@ local Table = Library['Table'];
                         end;
 
                         --
-                        for _, Child in Data['Children'] do
-                            if Child:IsA("Tool") then
-                                Data['CurrentTool'] = Child.Name;
-                                break
-                            end
-                            --
-                        end
+                        if Data['Children'] then
+						    for _, Child in Data['Children'] do
+						        if Child:IsA("Tool") then
+						            Data['CurrentTool'] = Child.Name;
+						            break
+						        end
+						    end
+						end
 
                         Library:UpdateWeapon(Data)
 
@@ -1235,12 +1236,12 @@ local Table = Library['Table'];
                             return;
                         end;
 
-                        Data['RootPart'] = RootPart;
-                        Data['Humanoid'] = Humanoid;
-
-                        Data['BindHealth'](Humanoid);
-                        Data['BindChildren'](Character);
-                        Data['BindFlags'](Humanoid);
+                       	Data['RootPart'] = RootPart;
+						Data['Humanoid'] = Humanoid;
+						
+						Data['BindChildren'](Character);
+						Data['BindHealth'](Humanoid);
+						Data['BindFlags'](Humanoid);
                     end
 
                     local InitCharacter = Player.Character
