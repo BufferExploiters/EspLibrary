@@ -94,7 +94,7 @@
             },
         }
         local R6BoundParts = {'Head', 'Torso', 'Left Arm', 'Right Arm', 'Left Leg', 'Right Leg'}
-        local R15BoundParts = {'Head', 'UpperTorso', 'LeftUpperArm', 'RightUpperArm', 'LeftFoot', 'RightFoot'}
+        local R15BoundParts = {'Head', 'UpperTorso', 'LowerTorso', 'LeftUpperArm', 'RightUpperArm', 'LeftFoot', 'RightFoot'}
 
         local Table = Library['Table'];
 
