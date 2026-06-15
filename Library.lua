@@ -791,7 +791,7 @@
 
         function Library:CalculateBox(Data)
             local RootPart = Data['RootPart']
-            --
+
             if not RootPart then
                 return nil, nil, nil, nil, false;
             end;
@@ -800,7 +800,6 @@
 
             if not OnScreen then
                 return nil, nil, nil, nil, false;
-                --
             end;
 
             local BoundingBox = Table['Boxes']['Bounding Box'];
@@ -810,7 +809,6 @@
 
                 if not Children then
                     return nil, nil, nil, nil, false;
-                    --
                 end;
 
                 local IncludeAccessories = Data['IncludeAccessories'];
@@ -822,10 +820,10 @@
                     if Part:IsA('BasePart') and Part.Transparency ~= 1 and Part ~= RootPart then
                         local Parent = Part.Parent
 
-                        if Parent == nil then 
-                            continue 
+                        if Parent == nil then
+                            continue
                         end
-                        
+
                         if not IncludeAccessories and Parent:IsA('Accessory') then
                             continue;
                         end;
@@ -834,7 +832,6 @@
 
                         if not PartOnScreen or PartScreen.Z <= 0 then
                             continue;
-                            --
                         end;
 
                         HasValidParts = true;
@@ -851,28 +848,13 @@
                         local PMinX, PMaxX = PartScreen.X - Ex, PartScreen.X + Ex;
                         local PMinY, PMaxY = PartScreen.Y - Ey, PartScreen.Y + Ey;
 
-                        if PMinX < ScrMinX then 
-                            ScrMinX = PMinX;
-                            --
-                        end;
-
-                        if PMaxX > ScrMaxX then 
-                            ScrMaxX = PMaxX;
-                            --
-                        end;
-
-                        if PMinY < ScrMinY then 
-                            ScrMinY = PMinY;
-                            --
-                        end;
-
-                        if PMaxY > ScrMaxY then 
-                            ScrMaxY = PMaxY;
-                            --
-                        end;
+                        if PMinX < ScrMinX then ScrMinX = PMinX; end
+                        if PMaxX > ScrMaxX then ScrMaxX = PMaxX; end
+                        if PMinY < ScrMinY then ScrMinY = PMinY; end
+                        if PMaxY > ScrMaxY then ScrMaxY = PMaxY; end
                     end;
                 end;
-                --
+
                 if not HasValidParts then
                     return nil, nil, nil, nil, false;
                 end;
@@ -886,9 +868,10 @@
             else
                 local Scale = (RootPart.Size.Y * ViewPortY) / (RootScreen.Z * 2);
                 local W, H = 3 * Scale, 4.5 * Scale;
-
                 return W, H, RootScreen.X - (W * 0.5), RootScreen.Y - (H * 0.5), OnScreen;
             end
+        end
+
         function Library:AddTarget(Player)
             if Player == LocalPlayer then
                 return
