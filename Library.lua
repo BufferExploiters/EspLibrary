@@ -90,7 +90,6 @@ local GetService = setmetatable({}, {
 		Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 	end
 	
-	Library.Config = Table;
     Library.__index = Library;
 
     function Library:CreateObjects(Name, Prop)
