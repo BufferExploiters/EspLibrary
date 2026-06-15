@@ -99,7 +99,7 @@ local GetService = setmetatable({}, {
 	        },
 	    },
 	}
-
+local Table = Library['Table'];
     local Fonts = { }; do
         local function FontsRegister(Name, Weight, Style, Asset)
 			if not isfile(Asset.Id) then
@@ -148,7 +148,6 @@ local GetService = setmetatable({}, {
 		Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 	end
 
-	local Table = Library['Table'];
     Library.__index = Library;
 
     function Library:CreateObjects(Name, Prop)
