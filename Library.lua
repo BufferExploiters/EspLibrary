@@ -988,6 +988,8 @@
                 ['RootPart'] = nil,
                 ['Humanoid'] = nil,
                 ['Children'] = nil,
+                ['Health'] = 0,
+                ['MaxHealth'] = 100,
                 ['Armor'] = 100,
                 ['MaxArmor'] = 100,
                 ['CurrentTool'] = nil,
@@ -1016,38 +1018,43 @@
                 ['LastHealthTop'] = nil,
                 ['LastHealthMid'] = nil,
                 ['LastHealthBot'] = nil,
+                ['LastHealthFloor'] = nil,
+                ['LastRatio'] = nil,
                 ['LastArmorTop'] = nil,
                 ['LastArmorMid'] = nil,
                 ['LastArmorBot'] = nil,
+                ['LastArmorFloor'] = nil,
+                ['LastArmorRatio'] = nil,
+                ['LastWeapon'] = nil,
                 ['LastWeaponColor'] = nil,
             }
-
             self:InitEsp(Data);
             self['Cache'][Player] = Data;
 
             local HealthHandler = {}; do
                 function HealthHandler.BindHealth(Humanoid)
                     if Data['Conns']['Health'] then
-                        Data['Conns']['Health']:Disconnect();
-                    end;
+                        Data['Conns']['Health']:Disconnect()
+                    end
 
                     if Data['Conns']['Died'] then
-                        Data['Conns']['Died']:Disconnect();
-                    end;
+                        Data['Conns']['Died']:Disconnect()
+                    end
 
-                    Data['Humanoid'] = Humanoid;
-                    Data['Alive'] = Humanoid.Health > 0;
-                    Library:UpdateHealth(Data);
+                    Data['Humanoid'] = Humanoid
+                    Data['Health'] = Humanoid.Health
+                    Data['MaxHealth'] = Humanoid.MaxHealth
+                    Data['Alive'] = Humanoid.Health > 0
 
                     Data['Conns']['Health'] = Humanoid.HealthChanged:Connect(function(NewHealth)
-                        Data['Alive'] = NewHealth > 0;
-                        Library:UpdateHealth(Data);
+                        Data['Alive'] = NewHealth > 0
+                        Data['Health'] = NewHealth
                     end)
 
                     Data['Conns']['Died'] = Humanoid.Died:Connect(function()
-                        Data['Alive'] = false;
+                        Data['Alive'] = false
                     end)
-                end;
+                end
 
                 Data['BindHealth'] = HealthHandler.BindHealth;
             end
@@ -1055,40 +1062,36 @@
             local ToolHandler = {}; do
                 function ToolHandler.BindTool(Character)
                     if Data['Conns']['ToolAdded'] then
-                        Data['Conns']['ToolAdded']:Disconnect();
-                    end;
+                        Data['Conns']['ToolAdded']:Disconnect()
+                    end
 
                     if Data['Conns']['ToolRemoved'] then
-                        Data['Conns']['ToolRemoved']:Disconnect();
-                    end;
+                        Data['Conns']['ToolRemoved']:Disconnect()
+                    end
 
                     if Data['Children'] then
                         for _, Child in Data['Children'] do
-                            if Child:IsA("Tool") then
-                                Data['CurrentTool'] = Child.Name;
+                            if Child:IsA('Tool') then
+                                Data['CurrentTool'] = Child.Name
                                 break
                             end
                         end
                     end
 
-                    Library:UpdateWeapon(Data);
-
                     Data['Conns']['ToolAdded'] = Character.ChildAdded:Connect(function(Child)
                         if Child:IsA('Tool') then
-                            Data['CurrentTool'] = Child.Name;
-                            Library:UpdateWeapon(Data);
+                            Data['CurrentTool'] = Child.Name
                         end
                     end)
 
                     Data['Conns']['ToolRemoved'] = Character.ChildRemoved:Connect(function(Child)
                         if Child:IsA('Tool') then
-                            Data['CurrentTool'] = nil;
-                            Library:UpdateWeapon(Data);
+                            Data['CurrentTool'] = nil
                         end
                     end)
                 end
 
-                Data['BindTool'] = ToolHandler.BindTool;
+                Data['BindTool'] = ToolHandler.BindTool
             end
 
             local ChildHandler = {}; do
@@ -1282,9 +1285,8 @@
                 return
             end
 
-            local Distance = Floor((CameraPosition - Data['RootPart'].Position).Magnitude)
-            local BoxesCfg = Table['Boxes']
-            local TextsCfg = Table['Texts']
+            local RootPos = Data['RootPart'].Position
+            local Distance = Floor((CameraPosition - RootPos).Magnitude)
 
             if Distance > Table['Distance'] then
                 if Objects['TargetHolder'].Visible then
@@ -1314,24 +1316,24 @@
             local DirtySizes = Data['LastW'] ~= W or Data['LastH'] ~= H
             local DirtyPosition = Data['LastX'] ~= X or Data['LastY'] ~= Y
 
-            if DirtyPosition or DirtySizes then
-                if DirtyPosition then
-                    Objects['TargetHolder'].Position = DimOffset(X, Y)
-                end
-
-                if DirtySizes then
-                    Objects['TargetHolder'].Size = DimOffset(W, H)
-                    Objects['BoxGlow'].Size = DimOffset(W, H)
-                    Objects['BoxOutlineHolder'].Size = DimOffset(W, H)
-                    Objects['BoxInlineHolder'].Size = DimOffset(W + 2, H + 2)
-                    Objects['BoxFill'].Size = DimOffset(W, H)
-                end
-
-                Data['LastW'] = W
-                Data['LastH'] = H
+            if DirtyPosition then
+                Objects['TargetHolder'].Position = DimOffset(X, Y)
                 Data['LastX'] = X
                 Data['LastY'] = Y
             end
+
+            if DirtySizes then
+                Objects['TargetHolder'].Size = DimOffset(W, H)
+                Objects['BoxGlow'].Size = DimOffset(W, H)
+                Objects['BoxOutlineHolder'].Size = DimOffset(W, H)
+                Objects['BoxInlineHolder'].Size = DimOffset(W + 2, H + 2)
+                Objects['BoxFill'].Size = DimOffset(W, H)
+                Data['LastW'] = W
+                Data['LastH'] = H
+            end
+
+            local BoxesCfg = Table['Boxes']
+            local TextsCfg = Table['Texts']
 
             if BoxesCfg['Enabled'] then
                 if BoxesCfg['Box Glow']['Enabled'] then
@@ -1418,12 +1420,15 @@
                 if Objects['BoxGlow'].ImageTransparency ~= 1 then
                     Objects['BoxGlow'].ImageTransparency = 1
                 end
+
                 if Objects['BoxOutlineHolder'].Visible then
                     Objects['BoxOutlineHolder'].Visible = false
                 end
+
                 if Objects['BoxInlineHolder'].Visible then
                     Objects['BoxInlineHolder'].Visible = false
                 end
+
                 if Objects['BoxFill'].Visible then
                     Objects['BoxFill'].Visible = false
                 end
@@ -1435,12 +1440,14 @@
                 end
 
                 local DisplayName = Player.DisplayName
+
                 if Data['LastDisplayName'] ~= DisplayName then
                     Objects['TargetName'].Text = DisplayName
                     Data['LastDisplayName'] = DisplayName
                 end
 
                 local NameColor = TextsCfg['Name']['Color']
+
                 if Data['LastNameColor'] ~= NameColor then
                     Objects['TargetName'].TextColor3 = NameColor
                     Data['LastNameColor'] = NameColor
@@ -1462,6 +1469,7 @@
                 end
 
                 local DistColor = TextsCfg['Distance']['Color']
+
                 if Data['LastDistColor'] ~= DistColor then
                     Objects['Distance'].TextColor3 = DistColor
                     Data['LastDistColor'] = DistColor
@@ -1473,7 +1481,26 @@
             end
 
             local HealthCfg = Table['Bars']['Health Bar']
-            if HealthCfg['Enabled'] and Data['Humanoid'] then
+            local ArmorCfg = Table['Bars']['Armor Bar']
+
+            if HealthCfg['Enabled'] then
+                local Health = Data['Health'] or 0
+                local MaxHealth = Data['MaxHealth'] or 100
+                local Ratio = Clamp(Health / MaxHealth, 0, 1)
+
+                if not Objects['LeftBarHolder'].Visible then
+                    Objects['LeftBarHolder'].Visible = true
+                end
+
+                if not Objects['HealthBarOutline'].Visible then
+                    Objects['HealthBarOutline'].Visible = true
+                end
+
+                if Data['LastRatio'] ~= Ratio then
+                    Objects['HealthBar'].Size = Dim2(1, 0, Ratio, 0)
+                    Data['LastRatio'] = Ratio
+                end
+
                 local GradTop = HealthCfg['Top']
                 local GradMid = HealthCfg['Mid']
                 local GradBot = HealthCfg['Bot']
@@ -1488,10 +1515,56 @@
                     Data['LastHealthMid'] = GradMid
                     Data['LastHealthBot'] = GradBot
                 end
+
+                if Ratio < 1 then
+                    if not Objects['HealthBarText'].Visible then
+                        Objects['HealthBarText'].Visible = true
+                    end
+
+                    local FlooredHealth = Floor(Health)
+
+                    if Data['LastHealthFloor'] ~= FlooredHealth then
+                        Objects['HealthBarText'].Text = Format('%d', FlooredHealth)
+                        Objects['HealthBarText'].Position = Dim2(0.5, 0, 1 - Ratio, 0)
+                        Data['LastHealthFloor'] = FlooredHealth
+                    end
+                else
+                    if Objects['HealthBarText'].Visible then
+                        Objects['HealthBarText'].Visible = false
+                    end
+                end
+            else
+                if Objects['HealthBarOutline'].Visible then
+                    Objects['HealthBarOutline'].Visible = false
+                end
+
+                if Objects['HealthBarText'].Visible then
+                    Objects['HealthBarText'].Visible = false
+                end
+
+                if not ArmorCfg['Enabled'] then
+                    if Objects['LeftBarHolder'].Visible then
+                        Objects['LeftBarHolder'].Visible = false
+                    end
+                end
             end
 
-            local ArmorCfg = Table['Bars']['Armor Bar']
-            if ArmorCfg['Enabled'] and Data['Humanoid'] then
+            if ArmorCfg['Enabled'] then
+                local Ratio = Clamp(Data['Armor'] / Data['MaxArmor'], 0, 1)
+
+                if not Objects['BottomBarHolder'].Visible then
+                    Objects['BottomBarHolder'].Visible = true
+                end
+
+                if not Objects['ArmorBarOutline'].Visible then
+                    Objects['ArmorBarOutline'].Visible = true
+                end
+
+                if Data['LastArmorRatio'] ~= Ratio then
+                    Objects['ArmorBar'].Size = Dim2(Ratio, 0, 1, 0)
+                    Data['LastArmorRatio'] = Ratio
+                end
+
                 local GradTop = ArmorCfg['Top']
                 local GradMid = ArmorCfg['Mid']
                 local GradBot = ArmorCfg['Bot']
@@ -1506,15 +1579,60 @@
                     Data['LastArmorMid'] = GradMid
                     Data['LastArmorBot'] = GradBot
                 end
+
+                if Ratio < 1 then
+                    if not Objects['ArmorBarText'].Visible then
+                        Objects['ArmorBarText'].Visible = true
+                    end
+
+                    local FlooredArmor = Floor(Data['Armor'])
+
+                    if Data['LastArmorFloor'] ~= FlooredArmor then
+                        Objects['ArmorBarText'].Text = Format('%d', FlooredArmor)
+                        Data['LastArmorFloor'] = FlooredArmor
+                    end
+                else
+                    if Objects['ArmorBarText'].Visible then
+                        Objects['ArmorBarText'].Visible = false
+                    end
+                end
+            else
+                if Objects['BottomBarHolder'].Visible then
+                    Objects['BottomBarHolder'].Visible = false
+                end
+
+                if Objects['ArmorBarOutline'].Visible then
+                    Objects['ArmorBarOutline'].Visible = false
+                end
+
+                if Objects['ArmorBarText'].Visible then
+                    Objects['ArmorBarText'].Visible = false
+                end
             end
 
             local WeaponCfg = TextsCfg['Weapon']
-            
+
             if WeaponCfg['Enabled'] then
+                if not Objects['Weapon'].Visible then
+                    Objects['Weapon'].Visible = true
+                end
+
+                local CurrentTool = Data['CurrentTool'] or 'none'
+
+                if Data['LastWeapon'] ~= CurrentTool then
+                    Objects['Weapon'].Text = CurrentTool
+                    Data['LastWeapon'] = CurrentTool
+                end
+
                 local WeaponColor = WeaponCfg['Color']
+
                 if Data['LastWeaponColor'] ~= WeaponColor then
                     Objects['Weapon'].TextColor3 = WeaponColor
                     Data['LastWeaponColor'] = WeaponColor
+                end
+            else
+                if Objects['Weapon'].Visible then
+                    Objects['Weapon'].Visible = false
                 end
             end
         end
