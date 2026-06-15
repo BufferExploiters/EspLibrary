@@ -35,16 +35,13 @@
             ['Holder'] = nil,
             ['Threads'] = {},
             ['Connections'] = {},
-    
             ['Table'] = {
                 ['Enabled'] = false,
                 ['Distance'] = 500,
                 ['Boxes'] = {
                     ['Enabled'] = false,
-            
                     ['Bounding Box'] = {
                         ['Enabled'] = false,
-                        ['Method'] = 'BodyPart',
                         ['IncludeAcsessories'] = false,
                         ['BoxX'] = 2,
                         ['BoxY'] = 6,
@@ -97,8 +94,8 @@
             },
         }
         local R6BoundParts = {'Head', 'Torso', 'Left Arm', 'Right Arm', 'Left Leg', 'Right Leg'}
-        local R15BoundParts = {'Head', 'UpperTorso', 'LowerTorso', 'RightHand', 'LeftHand', 'LeftFoot', 'RightFoot'}
-
+        local R15BoundParts = {'Head', 'UpperTorso', 'LeftUpperArm', 'RightUpperArm', 'LeftFoot', 'RightFoot'}
+        
         local Table = Library['Table'];
 
         local Fonts = {}; do
@@ -872,6 +869,110 @@
             end
         end
 
+        function Library:UpdateHealth(Data)
+            local Objects = Data['Objects'];
+            local HealthCfg = Table['Bars']['Health Bar'];
+            local ArmorCfg = Table['Bars']['Armor Bar'];
+
+            if HealthCfg['Enabled'] then
+                local Humanoid = Data['Humanoid'];
+
+                if not Humanoid then
+                    return;
+                end
+
+                local Health = Humanoid.Health;
+                local MaxHealth = Humanoid.MaxHealth;
+                local Ratio = Clamp(Health / MaxHealth, 0, 1);
+
+                Objects['LeftBarHolder'].Visible = true;
+                Objects['HealthBarOutline'].Visible = true;
+                Objects['HealthBar'].Size = Dim2(1, 0, Ratio, 0);
+
+                local GradTop = HealthCfg['Top'];
+                local GradMid = HealthCfg['Mid'];
+                local GradBot = HealthCfg['Bot'];
+
+                if Data['LastHealthTop'] ~= GradTop or Data['LastHealthMid'] ~= GradMid or Data['LastHealthBot'] ~= GradBot then
+                    Objects['HealthBarGradient'].Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, GradTop),
+                        ColorSequenceKeypoint.new(0.5, GradMid),
+                        ColorSequenceKeypoint.new(1, GradBot),
+                    })
+                    Data['LastHealthTop'] = GradTop;
+                    Data['LastHealthMid'] = GradMid;
+                    Data['LastHealthBot'] = GradBot;
+                end
+
+                if Ratio < 1 then
+                    Objects['HealthBarText'].Visible = true;
+                    Objects['HealthBarText'].Text = Format('%d', Floor(Health));
+                    Objects['HealthBarText'].Position = Dim2(0.5, 0, 1 - Ratio, 0);
+                else
+                    Objects['HealthBarText'].Visible = false;
+                end
+            else
+                Objects['HealthBarOutline'].Visible = false;
+                Objects['HealthBarText'].Visible = false;
+
+                if not ArmorCfg['Enabled'] then
+                    Objects['LeftBarHolder'].Visible = false;
+                end
+            end
+
+            if ArmorCfg['Enabled'] then
+                local Ratio = Clamp(Data['Armor'] / Data['MaxArmor'], 0, 1);
+
+                Objects['BottomBarHolder'].Visible = true;
+                Objects['ArmorBarOutline'].Visible = true;
+                Objects['ArmorBar'].Size = Dim2(Ratio, 0, 1, 0);
+
+                local GradTop = ArmorCfg['Top'];
+                local GradMid = ArmorCfg['Mid'];
+                local GradBot = ArmorCfg['Bot'];
+
+                if Data['LastArmorTop'] ~= GradTop or Data['LastArmorMid'] ~= GradMid or Data['LastArmorBot'] ~= GradBot then
+                    Objects['ArmorBarGradient'].Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, GradTop),
+                        ColorSequenceKeypoint.new(0.5, GradMid),
+                        ColorSequenceKeypoint.new(1, GradBot),
+                    })
+                    Data['LastArmorTop'] = GradTop;
+                    Data['LastArmorMid'] = GradMid;
+                    Data['LastArmorBot'] = GradBot;
+                end
+
+                if Ratio < 1 then
+                    Objects['ArmorBarText'].Visible = true;
+                    Objects['ArmorBarText'].Text = Format('%d', Floor(Data['Armor']));
+                else
+                    Objects['ArmorBarText'].Visible = false;
+                end
+            else
+                Objects['BottomBarHolder'].Visible = false;
+                Objects['ArmorBarOutline'].Visible = false;
+                Objects['ArmorBarText'].Visible = false;
+            end
+        end
+
+        function Library:UpdateWeapon(Data)
+            local Objects = Data['Objects'];
+            local WeaponCfg = Table['Texts']['Weapon'];
+
+            if WeaponCfg['Enabled'] then
+                Objects['Weapon'].Visible = true;
+                Objects['Weapon'].Text = Data['CurrentTool'] or 'none';
+
+                local WeaponColor = WeaponCfg['Color'];
+                if Data['LastWeaponColor'] ~= WeaponColor then
+                    Objects['Weapon'].TextColor3 = WeaponColor;
+                    Data['LastWeaponColor'] = WeaponColor;
+                end
+            else
+                Objects['Weapon'].Visible = false;
+            end
+        end
+
         function Library:AddTarget(Player)
             if Player == LocalPlayer then
                 return
@@ -889,7 +990,6 @@
                 ['RootPart'] = nil,
                 ['Humanoid'] = nil,
                 ['Children'] = nil,
-                ['BoundParts'] = nil,
                 ['Health'] = 0,
                 ['MaxHealth'] = 100,
                 ['Armor'] = 100,
@@ -930,7 +1030,6 @@
                 ['LastWeapon'] = nil,
                 ['LastWeaponColor'] = nil,
             }
-            
             self:InitEsp(Data);
             self['Cache'][Player] = Data;
 
@@ -1139,7 +1238,7 @@
                     Data['BindHealth'](Humanoid);
                     Data['BindFlags'](Humanoid);
                 end
-            
+
                 Data['Conns']['CharAdded'] = Player.CharacterAdded:Connect(function(Character)
                     task.defer(CharacterHandler.OnCharacter, Character)
                 end)
