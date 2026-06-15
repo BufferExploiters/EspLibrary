@@ -35,13 +35,16 @@
             ['Holder'] = nil,
             ['Threads'] = {},
             ['Connections'] = {},
+    
             ['Table'] = {
                 ['Enabled'] = false,
                 ['Distance'] = 500,
                 ['Boxes'] = {
                     ['Enabled'] = false,
+            
                     ['Bounding Box'] = {
                         ['Enabled'] = false,
+                        ['Method'] = 'BodyPart',
                         ['IncludeAcsessories'] = false,
                         ['BoxX'] = 2,
                         ['BoxY'] = 6,
@@ -802,9 +805,9 @@
             local BoundingBox = Table['Boxes']['Bounding Box']
         
             if BoundingBox['Enabled'] then
-                local BoundParts = Data['BoundParts']
-        
-                if not BoundParts then
+                local Parts = BoundingBox['Method'] == 'BasePart' and Data['BaseParts'] or Data['BoundParts']
+                
+                if not Parts then
                     return nil, nil, nil, nil, false
                 end
         
@@ -812,7 +815,7 @@
                 local ScrMaxX, ScrMaxY = -Huge, -Huge
                 local HasValidParts = false
         
-                for _, Part in BoundParts do
+                for _, Part in Parts do
                     local Cf = Part.CFrame
                     local Sz = Part.Size
                     local PartScreen, PartOnScreen = WorldToViewportPoint(Camera, Cf.Position)
@@ -1129,15 +1132,23 @@
 
                     local PartNames = Humanoid.RigType == Enum.HumanoidRigType.R15 and R15BoundParts or R6BoundParts
                     local BoundParts = {}
-
+                    local BaseParts = {}
+                    
+                    for _, Child in Character:GetChildren() do
+                        if Child:IsA('BasePart') and Child.Name ~= 'HumanoidRootPart' then
+                            BaseParts[#BaseParts + 1] = Child
+                        end
+                    end
+                    
                     for _, Name in PartNames do
                         local Part = FindFirstChild(Character, Name)
                         if Part then
                             BoundParts[#BoundParts + 1] = Part
                         end
                     end
-
+                    
                     Data['BoundParts'] = BoundParts
+                    Data['BaseParts'] = BaseParts
                     Data['RootPart'] = RootPart
                     Data['Humanoid'] = Humanoid
 
