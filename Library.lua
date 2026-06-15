@@ -35,11 +35,69 @@ local GetService = setmetatable({}, {
 	Camera:GetPropertyChangedSignal("ViewportSize"):Connect(CameraCache);
 
     getgenv().Library = {
-		['Directory'] = 'Esp',
-		['Cache'] = {},
-		['Holder'] = nil,
-		['Threads'] = {},
-		['Connections'] = {},
+	    ['Directory'] = 'Esp',
+	    ['Cache'] = {},
+	    ['Holder'] = nil,
+	    ['Threads'] = {},
+	    ['Connections'] = {},
+	
+	    ['Table'] = {
+	        ['Enabled'] = false,
+	        ['Distance'] = 500,
+	        ['Boxes'] = {
+	            ['Enabled'] = false,
+	            ['Bounding Box'] = {
+	                ['Enabled'] = false,
+	                ['IncludeAcsessories'] = false,
+	                ['BoxX'] = 2,
+	                ['BoxY'] = 6,
+	            },
+	            ['Box Glow'] = {
+	                ['Enabled'] = false,
+	                ['Top'] = Color3.fromRGB(255, 255, 255),
+	                ['Bot'] = Color3.fromRGB(255, 255, 255),
+	                ['Transparency'] = {1, 0},
+	            },
+	            ['Gradients'] = {
+	                ['Top'] = Color3.fromRGB(255, 255, 255),
+	                ['Bot'] = Color3.fromRGB(255, 255, 255),
+	            },
+	            ['Filled'] = {
+	                ['Enabled'] = false,
+	                ['Top'] = Color3.fromRGB(255, 255, 255),
+	                ['Bot'] = Color3.fromRGB(255, 255, 255),
+	                ['Transparency'] = {0.5, 0.5},
+	            },
+	        },
+	        ['Bars'] = {
+	            ['Health Bar'] = {
+	                ['Enabled'] = false,
+	                ['Top'] = Color3.fromRGB(0, 255, 0),
+	                ['Mid'] = Color3.fromRGB(255, 165, 0),
+	                ['Bot'] = Color3.fromRGB(255, 0, 0),
+	            },
+	            ['Armor Bar'] = {
+	                ['Enabled'] = false,
+	                ['Top'] = Color3.fromRGB(100, 180, 255),
+	                ['Mid'] = Color3.fromRGB(60, 120, 220),
+	                ['Bot'] = Color3.fromRGB(30, 60, 180),
+	            },
+	        },
+	        ['Texts'] = {
+	            ['Name'] = {
+	                ['Enabled'] = false,
+	                ['Color'] = Color3.fromRGB(255, 255, 255),
+	            },
+	            ['Distance'] = {
+	                ['Enabled'] = false,
+	                ['Color'] = Color3.fromRGB(200, 200, 200),
+	            },
+	            ['Weapon'] = {
+	                ['Enabled'] = false,
+	                ['Color'] = Color3.fromRGB(255, 220, 100),
+	            },
+	        },
+	    },
 	}
 
     local Fonts = { }; do
@@ -89,7 +147,8 @@ local GetService = setmetatable({}, {
         
 		Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 	end
-	
+
+	local Table = Library['Table'];
     Library.__index = Library;
 
     function Library:CreateObjects(Name, Prop)
