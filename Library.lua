@@ -982,8 +982,7 @@ local Table = Library['Table'];
                 end
                 --
             end
-
-  		function Library:AddTarget(Player)
+            function Library:AddTarget(Player)
                 if Player == LocalPlayer then
                     return
                 end;
@@ -992,44 +991,45 @@ local Table = Library['Table'];
                     return
                 end;
 
-				local Data = {
-					['Player'] = Player,
-					['Objects'] = {},
-					['Conns'] = {},
-					['Character'] = nil,
-					['RootPart'] = nil,
-					['Humanoid'] = nil,
-					['Children'] = nil,
-					['Armor'] = 100,
-					['MaxArmor'] = 100,
-					['CurrentTool'] = nil,
-					['Alive'] = false,
-					['LastW'] = nil,
-					['LastH'] = nil,
-					['LastX'] = nil,
-					['LastY'] = nil,
-					['WalkActive'] = false,
-					['JumpActive'] = false,
-					['IncludeAccessories'] = Table['Boxes']['Bounding Box']['IncludeAcsessories'],
-					['LastGlowTop'] = nil,
-					['LastGlowBot'] = nil,
-					['LastGlowT1'] = nil,
-					['LastGlowT2'] = nil,
-					['LastGradTop'] = nil,
-					['LastGradBot'] = nil,
-					['LastFillTop'] = nil,
-					['LastFillBot'] = nil,
-					['LastFillT1'] = nil,
-					['LastFillT2'] = nil,
-					['LastDist'] = nil,
-					['LastDistColor'] = nil,
-					['LastDisplayName'] = nil,
-					['LastNameColor'] = nil,
-				}
+                local Data = {
+                    ['Player'] = Player,
+                    ['Objects'] = {},
+                    ['Conns'] = {},
+                    ['Character'] = nil,
+                    ['RootPart'] = nil,
+                    ['Humanoid'] = nil,
+                    ['Children'] = nil,
+                    ['Armor'] = 100,
+                    ['MaxArmor'] = 100,
+                    ['CurrentTool'] = nil,
+                    ['Alive'] = false,
+                    ['LastW'] = nil,
+                    ['LastH'] = nil,
+                    ['LastX'] = nil,
+                    ['LastY'] = nil,
+                    ['WalkActive'] = false,
+                    ['JumpActive'] = false,
+                    ['IncludeAccessories'] = Table['Boxes']['Bounding Box']['IncludeAcsessories'],
+                    ['LastGlowTop'] = nil,
+                    ['LastGlowBot'] = nil,
+                    ['LastGlowT1'] = nil,
+                    ['LastGlowT2'] = nil,
+                    ['LastGradTop'] = nil,
+                    ['LastGradBot'] = nil,
+                    ['LastFillTop'] = nil,
+                    ['LastFillBot'] = nil,
+                    ['LastFillT1'] = nil,
+                    ['LastFillT2'] = nil,
+                    ['LastDist'] = nil,
+                    ['LastDistColor'] = nil,
+                    ['LastDisplayName'] = nil,
+                    ['LastNameColor'] = nil,
+                }
 
                 self:InitEsp(Data);
+                self['Cache'][Player] = Data;
 
-                local HealthHandler = { }; do
+                local HealthHandler = {}; do
                     function HealthHandler.BindHealth(Humanoid)
                         if Data['Conns']['Health'] then
                             Data['Conns']['Health']:Disconnect();
@@ -1040,51 +1040,48 @@ local Table = Library['Table'];
                         end;
 
                         Data['Alive'] = Humanoid.Health > 0;
+                        Data['Humanoid'] = Humanoid;
                         Library:UpdateHealth(Data);
 
                         Data['Conns']['Health'] = Humanoid.HealthChanged:Connect(function(NewHealth)
-                            Data['Alive'] = NewHealth > 0
-
+                            Data['Alive'] = NewHealth > 0;
                             Library:UpdateHealth(Data);
                         end)
 
                         Data['Conns']['Died'] = Humanoid.Died:Connect(function()
                             Data['Alive'] = false;
                         end)
-                        --
                     end;
-                    --
-                    Data['BindHealth'] = HealthHandler.BindHealth
+
+                    Data['BindHealth'] = HealthHandler.BindHealth;
                 end
-                
-                local ToolHandler = { }; do
+
+                local ToolHandler = {}; do
                     function ToolHandler.BindTool(Character)
                         if Data['Conns']['ToolAdded'] then
                             Data['Conns']['ToolAdded']:Disconnect();
                         end;
-                        --
+
                         if Data['Conns']['ToolRemoved'] then
                             Data['Conns']['ToolRemoved']:Disconnect();
                         end;
 
-                        --
                         if Data['Children'] then
-						    for _, Child in Data['Children'] do
-						        if Child:IsA("Tool") then
-						            Data['CurrentTool'] = Child.Name;
-						            break
-						        end
-						    end
-						end
+                            for _, Child in Data['Children'] do
+                                if Child:IsA("Tool") then
+                                    Data['CurrentTool'] = Child.Name;
+                                    break
+                                end
+                            end
+                        end
 
-                        Library:UpdateWeapon(Data)
+                        Library:UpdateWeapon(Data);
 
                         Data['Conns']['ToolAdded'] = Character.ChildAdded:Connect(function(Child)
                             if Child:IsA('Tool') then
                                 Data['CurrentTool'] = Child.Name;
                                 Library:UpdateWeapon(Data);
                             end
-                            --
                         end)
 
                         Data['Conns']['ToolRemoved'] = Character.ChildRemoved:Connect(function(Child)
@@ -1092,19 +1089,18 @@ local Table = Library['Table'];
                                 Data['CurrentTool'] = nil;
                                 Library:UpdateWeapon(Data);
                             end
-                            --
                         end)
                     end
 
                     Data['BindTool'] = ToolHandler.BindTool;
                 end
 
-                local ChildHandler = { }; do
+                local ChildHandler = {}; do
                     function ChildHandler.BindChildren(Character)
                         if Data['Conns']['ChildAdded'] then
                             Data['Conns']['ChildAdded']:Disconnect();
                         end;
-                        --
+
                         if Data['Conns']['ChildRemoved'] then
                             Data['Conns']['ChildRemoved']:Disconnect();
                         end;
@@ -1115,16 +1111,14 @@ local Table = Library['Table'];
                         Data['Conns']['ChildAdded'] = Character.ChildAdded:Connect(function(Child)
                             Children[#Children + 1] = Child;
                         end)
-                        --
+
                         Data['Conns']['ChildRemoved'] = Character.ChildRemoved:Connect(function(Child)
                             for I = #Children, 1, -1 do
                                 if Children[I] == Child then
                                     Remove(Children, I);
                                     break;
                                 end;
-                                --
                             end
-                            --
                         end)
 
                         Data['BindTool'](Character);
@@ -1133,12 +1127,12 @@ local Table = Library['Table'];
                     Data['BindChildren'] = ChildHandler.BindChildren;
                 end
 
-               local FlagsHandler = { }; do
+                local FlagsHandler = {}; do
                     function FlagsHandler.BindFlags(Humanoid)
                         if Data['Conns']['MoveDir'] then
                             Data['Conns']['MoveDir']:Disconnect();
                         end;
-                        --
+
                         if Data['Conns']['StateChange'] then
                             Data['Conns']['StateChange']:Disconnect();
                         end;
@@ -1155,23 +1149,20 @@ local Table = Library['Table'];
 
                             if Walking and not Data['WalkActive'] then
                                 Data['WalkActive'] = true;
-                                --
+
                                 if Data['JumpActive'] then
                                     Objects['WalkFlag'].LayoutOrder = 2;
                                 else
-                                    --
                                     Objects['WalkFlag'].LayoutOrder = 1;
                                     Objects['JumpFlag'].LayoutOrder = 2;
                                 end
-                                --
+
                                 Objects['WalkFlag'].Visible = true
                             elseif not Walking and Data['WalkActive'] then
-                                --
                                 Data['WalkActive'] = false;
                                 Objects['WalkFlag'].Visible = false;
 
                                 if Data['JumpActive'] then
-                                    --
                                     Objects['JumpFlag'].LayoutOrder = 1;
                                 end
                             end
@@ -1181,13 +1172,11 @@ local Table = Library['Table'];
                             local Jumping = NewState == Enum.HumanoidStateType.Jumping or NewState == Enum.HumanoidStateType.Freefall
 
                             if Jumping and not Data['JumpActive'] then
-                                --
-                                Data['JumpActive'] = true
+                                Data['JumpActive'] = true;
 
                                 if Data['WalkActive'] then
                                     Objects['JumpFlag'].LayoutOrder = 2;
                                 else
-                                    --
                                     Objects['JumpFlag'].LayoutOrder = 1;
                                     Objects['WalkFlag'].LayoutOrder = 2;
                                 end
@@ -1196,10 +1185,8 @@ local Table = Library['Table'];
                             elseif not Jumping and Data['JumpActive'] then
                                 Data['JumpActive'] = false;
                                 Objects['JumpFlag'].Visible = false;
-                                --
 
                                 if Data['WalkActive'] then
-                                    --
                                     Objects['WalkFlag'].LayoutOrder = 1;
                                 end
                             end
@@ -1208,7 +1195,8 @@ local Table = Library['Table'];
 
                     Data['BindFlags'] = FlagsHandler.BindFlags;
                 end
-                local CharacterHandler = { }; do
+
+                local CharacterHandler = {}; do
                     function CharacterHandler.OnCharacter(Character)
                         Data['Character'], Data['RootPart'], Data['Humanoid'], Data['Children'], Data['Alive'], Data['WalkActive'], Data['JumpActive'] = Character, nil, nil, nil, false, false, false;
 
@@ -1236,38 +1224,30 @@ local Table = Library['Table'];
                             return;
                         end;
 
-                       	Data['RootPart'] = RootPart;
-						Data['Humanoid'] = Humanoid;
-						
-						Data['BindChildren'](Character);
-						Data['BindHealth'](Humanoid);
-						Data['BindFlags'](Humanoid);
-                    end
+                        Data['RootPart'] = RootPart;
+                        Data['Humanoid'] = Humanoid;
 
-                    local InitCharacter = Player.Character
-
-                    if InitCharacter and InitCharacter.Parent then
-                        local RootPart = FindFirstChild(InitCharacter, 'HumanoidRootPart');
-                        local Humanoid = FindFirstChildOfClass(InitCharacter, 'Humanoid');
-
-                        if RootPart and Humanoid then
-                            CharacterHandler.OnCharacter(InitCharacter);
-                        else
-                            Spawn(function()
-                                CharacterHandler.OnCharacter(InitCharacter);
-                            end)
-                        end;
+                        Data['BindChildren'](Character);
+                        Data['BindHealth'](Humanoid);
+                        Data['BindFlags'](Humanoid);
                     end
 
                     Data['Conns']['CharAdded'] = Player.CharacterAdded:Connect(function(Character)
                         Spawn(function()
-                           CharacterHandler.OnCharacter(Character)
+                            CharacterHandler.OnCharacter(Character)
                         end)
                     end)
-                end
 
+                    if Player.Character and Player.Character.Parent then
+                        Spawn(function()
+                            CharacterHandler.OnCharacter(Player.Character)
+                        end)
+                    end
+                end
+                
                 self['Cache'][Player] = Data;
             end
+
 
             function Library:RemoveTarget(Player)
                 local Data = self['Cache'][Player];
