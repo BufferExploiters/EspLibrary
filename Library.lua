@@ -318,7 +318,7 @@
                     Parent = Objects["TopTextHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 2),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -391,7 +391,7 @@
             do
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["TopTextHolder"],
-                    PaddingBottom = Dim(0, 4),
+                    PaddingBottom = Dim(0, 0),
                 })
 
                 self:CreateObjects("UIPadding", {
