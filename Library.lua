@@ -318,7 +318,7 @@
                     Parent = Objects["TopTextHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
