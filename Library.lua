@@ -189,7 +189,7 @@
                     Visible = true,
                     BackgroundTransparency = 1,
                     AnchorPoint = NewVector2(0, 1),
-                    Position = Dim2(0, -2, 0, -5),
+                    Position = Dim2(0, -2, 0, -1),
                     Size = Dim2(1, 4, 0, 0),
                     BorderSizePixel = 0,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
@@ -201,7 +201,7 @@
                     AutomaticSize = Enum.AutomaticSize.Y,
                     Visible = true,
                     BackgroundTransparency = 1,
-                    Position = Dim2(0, -2, 1, 3),
+                    Position = Dim2(0, -2, 1, 1),
                     Size = Dim2(1, 4, 0, 0),
                     BorderSizePixel = 0,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
@@ -214,7 +214,7 @@
                     Visible = true,
                     BackgroundTransparency = 1,
                     AnchorPoint = NewVector2(1, 0),
-                    Position = Dim2(0, -5, 0, -2),
+                    Position = Dim2(0, -1, 0, -2),
                     Size = Dim2(0, 0, 1, 4),
                     BorderSizePixel = 0,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
@@ -226,7 +226,7 @@
                     AutomaticSize = Enum.AutomaticSize.X,
                     Visible = true,
                     BackgroundTransparency = 1,
-                    Position = Dim2(1, 8, 0, -2),
+                    Position = Dim2(1, 1, 0, -2),
                     Size = Dim2(0, 0, 1, 4),
                     BorderSizePixel = 0,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
@@ -318,28 +318,28 @@
                     Parent = Objects["TopTextHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["BottomTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["LeftTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Right,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["RightTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Left,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -361,7 +361,7 @@
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["TopHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
-                    Padding = Dim(0, 3),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -375,7 +375,7 @@
                     Parent = Objects["LeftHolder"],
                     FillDirection = Enum.FillDirection.Horizontal,
                     HorizontalAlignment = Enum.HorizontalAlignment.Left,
-                    Padding = Dim(0, 5),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -383,7 +383,7 @@
                     Parent = Objects["RightHolder"],
                     FillDirection = Enum.FillDirection.Horizontal,
                     HorizontalAlignment = Enum.HorizontalAlignment.Left,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
             end
@@ -391,7 +391,7 @@
             do
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["TopTextHolder"],
-                    PaddingBottom = Dim(0, -1),
+                    PaddingBottom = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
@@ -401,12 +401,12 @@
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftTextHolder"],
-                    PaddingTop = Dim(0, -2),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["RightTextHolder"],
-                    PaddingTop = Dim(0, -2),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
@@ -416,7 +416,7 @@
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomBarHolder"],
-                    PaddingTop = Dim(0, 2),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
