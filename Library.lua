@@ -391,7 +391,7 @@
             do
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["TopTextHolder"],
-                    PaddingBottom = Dim(0, 1),
+                    PaddingBottom = Dim(0, 4),
                 })
 
                 self:CreateObjects("UIPadding", {
