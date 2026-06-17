@@ -367,7 +367,7 @@
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["BottomHolder"],
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 2),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -375,7 +375,7 @@
                     Parent = Objects["LeftHolder"],
                     FillDirection = Enum.FillDirection.Horizontal,
                     HorizontalAlignment = Enum.HorizontalAlignment.Left,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 2),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -391,37 +391,37 @@
             do
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["TopTextHolder"],
-                    PaddingBottom = Dim(0, 2),
+                    PaddingBottom = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomTextHolder"],
-                    PaddingTop = Dim(0, 2),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftTextHolder"],
-                    PaddingTop = Dim(0, 2),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["RightTextHolder"],
-                    PaddingTop = Dim(0, 2),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftBarHolder"],
-                    PaddingRight = Dim(0, 64),
+                    PaddingRight = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomBarHolder"],
-                    PaddingTop = Dim(0, 4),
+                    PaddingTop = Dim(0, 1),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftHolder"],
-                    PaddingRight = Dim(0, 1),
+                    PaddingRight = Dim(0, 2),
                 })
             end
 
