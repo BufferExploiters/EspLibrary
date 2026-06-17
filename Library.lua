@@ -35,40 +35,45 @@
             ['Holder'] = nil,
             ['Threads'] = {},
             ['Connections'] = {},
+
             ['Table'] = {
-                ['Enabled'] = false,
+                ['Enabled'] = true,
                 ['Distance'] = 500,
                 ['Boxes'] = {
-                    ['Enabled'] = false,
+                    ['Enabled'] = true,
                     ['Bounding Box'] = {
-                        ['Enabled'] = false,
+                        ['Enabled'] = true,
                         ['IncludeAcsessories'] = false,
-                        ['BoxX'] = 2,
-                        ['BoxY'] = 6,
+                        ['BoxX'] = 0,
+                        ['BoxY'] = 2,
                     },
+
                     ['Box Glow'] = {
-                        ['Enabled'] = false,
+                        ['Enabled'] = true,
                         ['Top'] = Color3.fromRGB(255, 255, 255),
                         ['Bot'] = Color3.fromRGB(255, 255, 255),
-                        ['Transparency'] = {1, 0},
+                        ['Transparency'] = {0.85, 0.85},
                     },
+
                     ['Gradients'] = {
                         ['Top'] = Color3.fromRGB(255, 255, 255),
                         ['Bot'] = Color3.fromRGB(255, 255, 255),
                     },
+
                     ['Filled'] = {
-                        ['Enabled'] = false,
+                        ['Enabled'] = true,
                         ['Top'] = Color3.fromRGB(255, 255, 255),
                         ['Bot'] = Color3.fromRGB(255, 255, 255),
-                        ['Transparency'] = {0.5, 0.5},
+                        ['Transparency'] = {0.85, 0.85},
                     },
                 },
+
                 ['Bars'] = {
                     ['Health Bar'] = {
-                        ['Enabled'] = false,
-                        ['Top'] = Color3.fromRGB(0, 255, 0),
-                        ['Mid'] = Color3.fromRGB(255, 165, 0),
-                        ['Bot'] = Color3.fromRGB(255, 0, 0),
+                        ['Enabled'] = true,
+                        ['Top'] = Color3.fromRGB(255, 255, 255),
+                        ['Mid'] = Color3.fromRGB(255, 255, 255),
+                        ['Bot'] = Color3.fromRGB(200, 200, 200),
                     },
                     ['Armor Bar'] = {
                         ['Enabled'] = false,
@@ -77,18 +82,19 @@
                         ['Bot'] = Color3.fromRGB(30, 60, 180),
                     },
                 },
+				
                 ['Texts'] = {
                     ['Name'] = {
-                        ['Enabled'] = false,
+                        ['Enabled'] = true,
                         ['Color'] = Color3.fromRGB(255, 255, 255),
                     },
                     ['Distance'] = {
-                        ['Enabled'] = false,
+                        ['Enabled'] = true,
                         ['Color'] = Color3.fromRGB(200, 200, 200),
                     },
                     ['Weapon'] = {
-                        ['Enabled'] = false,
-                        ['Color'] = Color3.fromRGB(255, 220, 100),
+                        ['Enabled'] = true,
+                        ['Color'] = Color3.fromRGB(255, 0, 0),
                     },
                 },
             },
@@ -142,7 +148,7 @@
             Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
         end
 
-        Library.__index = Library;
+        Library.__index = Library; print("hello")
 
         function Library:CreateObjects(Name, Prop)
             local New = Instance.new(Name);
@@ -226,7 +232,7 @@
                     AutomaticSize = Enum.AutomaticSize.X,
                     Visible = true,
                     BackgroundTransparency = 1,
-                    Position = Dim2(1, 8, 0, -2),
+                    Position = Dim2(1, 5, 0, -2),
                     Size = Dim2(0, 0, 1, 4),
                     BorderSizePixel = 0,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
@@ -318,14 +324,14 @@
                     Parent = Objects["TopTextHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 111),
+                    Padding = Dim(0, 1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["BottomTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 0),
+                    Padding = Dim(0, -1),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -391,12 +397,12 @@
             do
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["TopTextHolder"],
-                    PaddingBottom = Dim(0, 1),
+                    PaddingBottom = Dim(0, 0),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomTextHolder"],
-                    PaddingTop = Dim(0, 21
+                    PaddingTop = Dim(0, -1)
                 })
 
                 self:CreateObjects("UIPadding", {
@@ -416,7 +422,7 @@
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomBarHolder"],
-                    PaddingTop = Dim(0, -3),
+                    PaddingTop = Dim(0, 3),
                 })
 
                 self:CreateObjects("UIPadding", {
