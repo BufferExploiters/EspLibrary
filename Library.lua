@@ -169,620 +169,620 @@
         })
 
         function Library:InitEsp(Data)
-    local Objects = Data.Objects
+            local Objects = Data.Objects
 
-    do
-        Objects["TargetHolder"] = self:CreateObjects("Frame", {
-            Parent = self.Holder,
-            Visible = false,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(0, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+            do
+                Objects["TargetHolder"] = self:CreateObjects("Frame", {
+                    Parent = self.Holder,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(0, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["TopHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["TargetHolder"],
-            AutomaticSize = Enum.AutomaticSize.Y,
-            Visible = true,
-            BackgroundTransparency = 1,
-            AnchorPoint = NewVector2(0, 1),
-            Position = Dim2(0, -2, 0, -1),
-            Size = Dim2(1, 4, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["TopHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["TargetHolder"],
+                    AutomaticSize = Enum.AutomaticSize.Y,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    AnchorPoint = NewVector2(0, 1),
+                    Position = Dim2(0, -2, 0, -5),
+                    Size = Dim2(1, 4, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BottomHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["TargetHolder"],
-            AutomaticSize = Enum.AutomaticSize.Y,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, -2, 1, 1),
-            Size = Dim2(1, 4, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["BottomHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["TargetHolder"],
+                    AutomaticSize = Enum.AutomaticSize.Y,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, -2, 1, 3),
+                    Size = Dim2(1, 4, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["LeftHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["TargetHolder"],
-            AutomaticSize = Enum.AutomaticSize.X,
-            Visible = true,
-            BackgroundTransparency = 1,
-            AnchorPoint = NewVector2(1, 0),
-            Position = Dim2(0, -1, 0, -2),
-            Size = Dim2(0, 0, 1, 4),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["LeftHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["TargetHolder"],
+                    AutomaticSize = Enum.AutomaticSize.X,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    AnchorPoint = NewVector2(1, 0),
+                    Position = Dim2(0, -5, 0, -2),
+                    Size = Dim2(0, 0, 1, 4),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["RightHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["TargetHolder"],
-            AutomaticSize = Enum.AutomaticSize.X,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(1, 1, 0, -2),
-            Size = Dim2(0, 0, 1, 4),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
-    end
+                Objects["RightHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["TargetHolder"],
+                    AutomaticSize = Enum.AutomaticSize.X,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(1, 8, 0, -2),
+                    Size = Dim2(0, 0, 1, 4),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
+            end
 
-    do
-        Objects["TopTextHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["TopHolder"],
-            AutomaticSize = Enum.AutomaticSize.Y,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(1, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+            do
+                Objects["TopTextHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["TopHolder"],
+                    AutomaticSize = Enum.AutomaticSize.Y,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(1, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BottomTextHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["BottomHolder"],
-            LayoutOrder = 2,
-            AutomaticSize = Enum.AutomaticSize.Y,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(1, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["BottomTextHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["BottomHolder"],
+                    LayoutOrder = 2,
+                    AutomaticSize = Enum.AutomaticSize.Y,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(1, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["LeftTextHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["LeftHolder"],
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(1, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["LeftTextHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["LeftHolder"],
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(1, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["RightTextHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["RightHolder"],
-            LayoutOrder = 2,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(0, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
-    end
+                Objects["RightTextHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["RightHolder"],
+                    LayoutOrder = 2,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(0, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
+            end
 
-    do
-        Objects["LeftBarHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["LeftHolder"],
-            AutomaticSize = Enum.AutomaticSize.X,
-            Visible = false,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(0, 0, 1, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+            do
+                Objects["LeftBarHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["LeftHolder"],
+                    AutomaticSize = Enum.AutomaticSize.X,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(0, 0, 1, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BottomBarHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["BottomHolder"],
-            LayoutOrder = 0,
-            AutomaticSize = Enum.AutomaticSize.Y,
-            Visible = false,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(1, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
-    end
+                Objects["BottomBarHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["BottomHolder"],
+                    LayoutOrder = 0,
+                    AutomaticSize = Enum.AutomaticSize.Y,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(1, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
+            end
 
-    do
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["TopTextHolder"],
-            VerticalAlignment = Enum.VerticalAlignment.Bottom,
-            HorizontalAlignment = Enum.HorizontalAlignment.Center,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+            do
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["TopTextHolder"],
+                    VerticalAlignment = Enum.VerticalAlignment.Bottom,
+                    HorizontalAlignment = Enum.HorizontalAlignment.Center,
+                    Padding = Dim(0, 2),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["BottomTextHolder"],
-            HorizontalAlignment = Enum.HorizontalAlignment.Center,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["BottomTextHolder"],
+                    HorizontalAlignment = Enum.HorizontalAlignment.Center,
+                    Padding = Dim(0, 2),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["LeftTextHolder"],
-            HorizontalAlignment = Enum.HorizontalAlignment.Right,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["LeftTextHolder"],
+                    HorizontalAlignment = Enum.HorizontalAlignment.Right,
+                    Padding = Dim(0, 2),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["RightTextHolder"],
-            HorizontalAlignment = Enum.HorizontalAlignment.Left,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["RightTextHolder"],
+                    HorizontalAlignment = Enum.HorizontalAlignment.Left,
+                    Padding = Dim(0, 2),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["LeftBarHolder"],
-            FillDirection = Enum.FillDirection.Horizontal,
-            HorizontalAlignment = Enum.HorizontalAlignment.Right,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["LeftBarHolder"],
+                    FillDirection = Enum.FillDirection.Horizontal,
+                    HorizontalAlignment = Enum.HorizontalAlignment.Right,
+                    Padding = Dim(0, 1),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["BottomBarHolder"],
-            HorizontalAlignment = Enum.HorizontalAlignment.Center,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["BottomBarHolder"],
+                    HorizontalAlignment = Enum.HorizontalAlignment.Center,
+                    Padding = Dim(0, 1),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["TopHolder"],
-            VerticalAlignment = Enum.VerticalAlignment.Bottom,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["TopHolder"],
+                    VerticalAlignment = Enum.VerticalAlignment.Bottom,
+                    Padding = Dim(0, 3),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["BottomHolder"],
-            Padding = Dim(0, 2),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["BottomHolder"],
+                    Padding = Dim(0, 1),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["LeftHolder"],
-            FillDirection = Enum.FillDirection.Horizontal,
-            HorizontalAlignment = Enum.HorizontalAlignment.Left,
-            Padding = Dim(0, 2),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["LeftHolder"],
+                    FillDirection = Enum.FillDirection.Horizontal,
+                    HorizontalAlignment = Enum.HorizontalAlignment.Left,
+                    Padding = Dim(0, 5),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
 
-        self:CreateObjects("UIListLayout", {
-            Parent = Objects["RightHolder"],
-            FillDirection = Enum.FillDirection.Horizontal,
-            HorizontalAlignment = Enum.HorizontalAlignment.Left,
-            Padding = Dim(0, 1),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        })
-    end
+                self:CreateObjects("UIListLayout", {
+                    Parent = Objects["RightHolder"],
+                    FillDirection = Enum.FillDirection.Horizontal,
+                    HorizontalAlignment = Enum.HorizontalAlignment.Left,
+                    Padding = Dim(0, 2),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                })
+            end
 
-    do
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["TopTextHolder"],
-            PaddingBottom = Dim(0, 1),
-        })
+            do
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["TopTextHolder"],
+                    PaddingBottom = Dim(0, 1),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["BottomTextHolder"],
-            PaddingTop = Dim(0, 1),
-        })
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["BottomTextHolder"],
+                    PaddingTop = Dim(0, 2),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["LeftTextHolder"],
-            PaddingTop = Dim(0, 1),
-        })
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["LeftTextHolder"],
+                    PaddingTop = Dim(0, -3),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["RightTextHolder"],
-            PaddingTop = Dim(0, 1),
-        })
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["RightTextHolder"],
+                    PaddingTop = Dim(0, -3),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["LeftBarHolder"],
-            PaddingRight = Dim(0, 1),
-        })
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["LeftBarHolder"],
+                    PaddingRight = Dim(0, 1),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["BottomBarHolder"],
-            PaddingTop = Dim(0, 1),
-        })
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["BottomBarHolder"],
+                    PaddingTop = Dim(0, 3),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["LeftHolder"],
-            PaddingRight = Dim(0, 2),
-        })
-    end
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["LeftHolder"],
+                    PaddingRight = Dim(0, 1),
+                })
+            end
 
-    do
-        Objects["BoxGlow"] = self:CreateObjects("ImageLabel", {
-            Parent = Objects["TargetHolder"],
-            Image = "rbxassetid://110204605000367",
-            ScaleType = Enum.ScaleType.Slice,
-            SliceCenter = Rect.new(NewVector2(21, 21), NewVector2(79, 79)),
-            AutomaticSize = Enum.AutomaticSize.XY,
-            ImageTransparency = 0.65,
-            ResampleMode = Enum.ResamplerMode.Pixelated,
-            Visible = true,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, -21, 0, -21),
-            Size = Dim2(0, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+            do
+                Objects["BoxGlow"] = self:CreateObjects("ImageLabel", {
+                    Parent = Objects["TargetHolder"],
+                    Image = "rbxassetid://110204605000367",
+                    ScaleType = Enum.ScaleType.Slice,
+                    SliceCenter = Rect.new(NewVector2(21, 21), NewVector2(79, 79)),
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    ImageTransparency = 0.65,
+                    ResampleMode = Enum.ResamplerMode.Pixelated,
+                    Visible = true,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, -21, 0, -21),
+                    Size = Dim2(0, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BoxGlowGradient"] = self:CreateObjects("UIGradient", {
-            Parent = Objects["BoxGlow"],
-            Rotation = 90,
-            Color = ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-                ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
-            }),
-            Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
-        })
+                Objects["BoxGlowGradient"] = self:CreateObjects("UIGradient", {
+                    Parent = Objects["BoxGlow"],
+                    Rotation = 90,
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+                        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
+                    }),
+                    Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
+                })
 
-        self:CreateObjects("UIPadding", {
-            Parent = Objects["BoxGlow"],
-            PaddingTop = Dim(0, 21),
-            PaddingBottom = Dim(0, 20),
-            PaddingLeft = Dim(0, 21),
-            PaddingRight = Dim(0, 20),
-        })
+                self:CreateObjects("UIPadding", {
+                    Parent = Objects["BoxGlow"],
+                    PaddingTop = Dim(0, 21),
+                    PaddingBottom = Dim(0, 20),
+                    PaddingLeft = Dim(0, 21),
+                    PaddingRight = Dim(0, 20),
+                })
 
-        Objects["BoxOutlineHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["BoxGlow"],
-            Visible = false,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(0, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["BoxOutlineHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["BoxGlow"],
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(0, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BoxOutline"] = self:CreateObjects("UIStroke", {
-            Parent = Objects["BoxOutlineHolder"],
-            Thickness = 3,
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                Objects["BoxOutline"] = self:CreateObjects("UIStroke", {
+                    Parent = Objects["BoxOutlineHolder"],
+                    Thickness = 3,
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["BoxOutlineGradient"] = self:CreateObjects("UIGradient", {
-            Parent = Objects["BoxOutline"],
-            Rotation = 90,
-            Color = ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-                ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
-            }),
-            Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
-        })
+                Objects["BoxOutlineGradient"] = self:CreateObjects("UIGradient", {
+                    Parent = Objects["BoxOutline"],
+                    Rotation = 90,
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+                        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
+                    }),
+                    Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
+                })
 
-        Objects["BoxInlineHolder"] = self:CreateObjects("Frame", {
-            Parent = Objects["BoxGlow"],
-            Visible = false,
-            BackgroundTransparency = 1,
-            Position = Dim2(0, -1, 0, -1),
-            Size = Dim2(0, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["BoxInlineHolder"] = self:CreateObjects("Frame", {
+                    Parent = Objects["BoxGlow"],
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    Position = Dim2(0, -1, 0, -1),
+                    Size = Dim2(0, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BoxInline"] = self:CreateObjects("UIStroke", {
-            Parent = Objects["BoxInlineHolder"],
-            Color = Color3.fromRGB(255, 255, 255),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                Objects["BoxInline"] = self:CreateObjects("UIStroke", {
+                    Parent = Objects["BoxInlineHolder"],
+                    Color = Color3.fromRGB(255, 255, 255),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["BoxInlineGradient"] = self:CreateObjects("UIGradient", {
-            Parent = Objects["BoxInline"],
-            Rotation = 90,
-            Color = ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),
-            }),
-            Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
-        })
+                Objects["BoxInlineGradient"] = self:CreateObjects("UIGradient", {
+                    Parent = Objects["BoxInline"],
+                    Rotation = 90,
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+                        ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),
+                    }),
+                    Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
+                })
 
-        Objects["BoxFill"] = self:CreateObjects("Frame", {
-            Parent = Objects["BoxGlow"],
-            Visible = false,
-            BackgroundTransparency = 0,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(0, 0, 0, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["BoxFill"] = self:CreateObjects("Frame", {
+                    Parent = Objects["BoxGlow"],
+                    Visible = false,
+                    BackgroundTransparency = 0,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(0, 0, 0, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["BoxFillGradient"] = self:CreateObjects("UIGradient", {
-            Parent = Objects["BoxFill"],
-            Rotation = 90,
-            Color = ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),
-            }),
-            Transparency = NumSeq({NumKey(0, 1), NumKey(1, 1)}),
-        })
-    end
+                Objects["BoxFillGradient"] = self:CreateObjects("UIGradient", {
+                    Parent = Objects["BoxFill"],
+                    Rotation = 90,
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+                        ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),
+                    }),
+                    Transparency = NumSeq({NumKey(0, 1), NumKey(1, 1)}),
+                })
+            end
 
-    do
-        Objects["HealthBarOutline"] = self:CreateObjects("Frame", {
-            Parent = Objects["LeftBarHolder"],
-            ZIndex = 5,
-            LayoutOrder = 0,
-            Visible = false,
-            BackgroundTransparency = 0,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(0, 2, 1, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-            ClipsDescendants = false,
-        })
+            do
+                Objects["HealthBarOutline"] = self:CreateObjects("Frame", {
+                    Parent = Objects["LeftBarHolder"],
+                    ZIndex = 5,
+                    LayoutOrder = 0,
+                    Visible = false,
+                    BackgroundTransparency = 0,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(0, 2, 1, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+                    ClipsDescendants = false,
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["HealthBarOutline"],
-            Thickness = 1,
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["HealthBarOutline"],
+                    Thickness = 1,
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["HealthBar"] = self:CreateObjects("Frame", {
-            Parent = Objects["HealthBarOutline"],
-            ZIndex = 6,
-            AnchorPoint = NewVector2(0, 1),
-            Position = Dim2(0, 0, 1, 0),
-            Size = Dim2(1, 0, 1, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-            ClipsDescendants = true,
-        })
+                Objects["HealthBar"] = self:CreateObjects("Frame", {
+                    Parent = Objects["HealthBarOutline"],
+                    ZIndex = 6,
+                    AnchorPoint = NewVector2(0, 1),
+                    Position = Dim2(0, 0, 1, 0),
+                    Size = Dim2(1, 0, 1, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    ClipsDescendants = true,
+                })
 
-        Objects["HealthBarGradient"] = self:CreateObjects("UIGradient", {
-            Parent = Objects["HealthBar"],
-            Rotation = 90,
-            Color = ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Table['Bars']['Health Bar']['Top']),
-                ColorSequenceKeypoint.new(0.5, Table['Bars']['Health Bar']['Mid']),
-                ColorSequenceKeypoint.new(1, Table['Bars']['Health Bar']['Bot']),
-            }),
-            Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
-        })
+                Objects["HealthBarGradient"] = self:CreateObjects("UIGradient", {
+                    Parent = Objects["HealthBar"],
+                    Rotation = 90,
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Table['Bars']['Health Bar']['Top']),
+                        ColorSequenceKeypoint.new(0.5, Table['Bars']['Health Bar']['Mid']),
+                        ColorSequenceKeypoint.new(1, Table['Bars']['Health Bar']['Bot']),
+                    }),
+                    Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
+                })
 
-        Objects["HealthBarText"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["HealthBarOutline"],
-            FontFace = Library.SmallestPixel,
-            TextSize = 9,
-            ZIndex = 10,
-            TextColor3 = Color3.fromRGB(255, 255, 255),
-            Text = "",
-            TextXAlignment = Enum.TextXAlignment.Center,
-            TextYAlignment = Enum.TextYAlignment.Center,
-            AnchorPoint = NewVector2(0.5, 0.5),
-            Position = Dim2(0.5, 0, 1, 0),
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+                Objects["HealthBarText"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["HealthBarOutline"],
+                    FontFace = Library.SmallestPixel,
+                    TextSize = 9,
+                    ZIndex = 10,
+                    TextColor3 = Color3.fromRGB(255, 255, 255),
+                    Text = "",
+                    TextXAlignment = Enum.TextXAlignment.Center,
+                    TextYAlignment = Enum.TextYAlignment.Center,
+                    AnchorPoint = NewVector2(0.5, 0.5),
+                    Position = Dim2(0.5, 0, 1, 0),
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["HealthBarText"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["HealthBarText"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["ArmorBarOutline"] = self:CreateObjects("Frame", {
-            Parent = Objects["BottomBarHolder"],
-            ZIndex = 5,
-            LayoutOrder = 0,
-            Visible = false,
-            BackgroundTransparency = 0,
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(1, 0, 0, 2),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-            ClipsDescendants = true,
-        })
+                Objects["ArmorBarOutline"] = self:CreateObjects("Frame", {
+                    Parent = Objects["BottomBarHolder"],
+                    ZIndex = 5,
+                    LayoutOrder = 0,
+                    Visible = false,
+                    BackgroundTransparency = 0,
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(1, 0, 0, 2),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+                    ClipsDescendants = true,
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["ArmorBarOutline"],
-            Thickness = 1,
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["ArmorBarOutline"],
+                    Thickness = 1,
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["ArmorBar"] = self:CreateObjects("Frame", {
-            Parent = Objects["ArmorBarOutline"],
-            ZIndex = 6,
-            AnchorPoint = NewVector2(0, 0),
-            Position = Dim2(0, 0, 0, 0),
-            Size = Dim2(1, 0, 1, 0),
-            BorderSizePixel = 0,
-            BorderColor3 = Color3.fromRGB(0, 0, 0),
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        })
+                Objects["ArmorBar"] = self:CreateObjects("Frame", {
+                    Parent = Objects["ArmorBarOutline"],
+                    ZIndex = 6,
+                    AnchorPoint = NewVector2(0, 0),
+                    Position = Dim2(0, 0, 0, 0),
+                    Size = Dim2(1, 0, 1, 0),
+                    BorderSizePixel = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                })
 
-        Objects["ArmorBarGradient"] = self:CreateObjects("UIGradient", {
-            Parent = Objects["ArmorBar"],
-            Rotation = 0,
-            Color = ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Table['Bars']['Armor Bar']['Top']),
-                ColorSequenceKeypoint.new(0.5, Table['Bars']['Armor Bar']['Mid']),
-                ColorSequenceKeypoint.new(1, Table['Bars']['Armor Bar']['Bot']),
-            }),
-            Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
-        })
+                Objects["ArmorBarGradient"] = self:CreateObjects("UIGradient", {
+                    Parent = Objects["ArmorBar"],
+                    Rotation = 0,
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Table['Bars']['Armor Bar']['Top']),
+                        ColorSequenceKeypoint.new(0.5, Table['Bars']['Armor Bar']['Mid']),
+                        ColorSequenceKeypoint.new(1, Table['Bars']['Armor Bar']['Bot']),
+                    }),
+                    Transparency = NumSeq({NumKey(0, 0), NumKey(1, 0)}),
+                })
 
-        Objects["ArmorBarText"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["ArmorBar"],
-            FontFace = Library.SmallestPixel,
-            TextSize = 9,
-            ZIndex = 10,
-            TextColor3 = Color3.fromRGB(255, 255, 255),
-            Text = "",
-            TextXAlignment = Enum.TextXAlignment.Center,
-            AnchorPoint = NewVector2(0.5, 0.5),
-            Position = Dim2(0.5, 0, 0.5, 0),
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+                Objects["ArmorBarText"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["ArmorBar"],
+                    FontFace = Library.SmallestPixel,
+                    TextSize = 9,
+                    ZIndex = 10,
+                    TextColor3 = Color3.fromRGB(255, 255, 255),
+                    Text = "",
+                    TextXAlignment = Enum.TextXAlignment.Center,
+                    AnchorPoint = NewVector2(0.5, 0.5),
+                    Position = Dim2(0.5, 0, 0.5, 0),
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["ArmorBarText"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
-    end
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["ArmorBarText"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
+            end
 
-    do
-        Objects["TargetName"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["TopTextHolder"],
-            FontFace = Library.ProggyClean,
-            TextSize = 12,
-            LayoutOrder = 2,
-            TextColor3 = Table['Texts']['Name']['Color'],
-            Text = "",
-            TextXAlignment = Enum.TextXAlignment.Center,
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            ZIndex = 5,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+            do
+                Objects["TargetName"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["TopTextHolder"],
+                    FontFace = Library.ProggyClean,
+                    TextSize = 12,
+                    LayoutOrder = 2,
+                    TextColor3 = Table['Texts']['Name']['Color'],
+                    Text = "",
+                    TextXAlignment = Enum.TextXAlignment.Center,
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    ZIndex = 5,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["TargetName"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["TargetName"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["Distance"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["BottomTextHolder"],
-            FontFace = Library.SmallestPixel,
-            TextSize = 9,
-            LayoutOrder = 2,
-            TextColor3 = Table['Texts']['Distance']['Color'],
-            Text = "",
-            TextXAlignment = Enum.TextXAlignment.Center,
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            ZIndex = 5,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+                Objects["Distance"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["BottomTextHolder"],
+                    FontFace = Library.SmallestPixel,
+                    TextSize = 9,
+                    LayoutOrder = 2,
+                    TextColor3 = Table['Texts']['Distance']['Color'],
+                    Text = "",
+                    TextXAlignment = Enum.TextXAlignment.Center,
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    ZIndex = 5,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["Distance"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["Distance"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["WalkFlag"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["RightTextHolder"],
-            FontFace = Library.SmallestPixel,
-            TextSize = 9,
-            LayoutOrder = 1,
-            TextColor3 = Color3.fromRGB(255, 255, 255),
-            Text = "Walking",
-            TextXAlignment = Enum.TextXAlignment.Left,
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            ZIndex = 5,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+                Objects["WalkFlag"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["RightTextHolder"],
+                    FontFace = Library.SmallestPixel,
+                    TextSize = 9,
+                    LayoutOrder = 1,
+                    TextColor3 = Color3.fromRGB(255, 255, 255),
+                    Text = "Walking",
+                    TextXAlignment = Enum.TextXAlignment.Left,
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    ZIndex = 5,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["WalkFlag"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["WalkFlag"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["JumpFlag"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["RightTextHolder"],
-            FontFace = Library.SmallestPixel,
-            TextSize = 9,
-            LayoutOrder = 2,
-            TextColor3 = Color3.fromRGB(255, 255, 255),
-            Text = "Jumping",
-            TextXAlignment = Enum.TextXAlignment.Left,
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            ZIndex = 5,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+                Objects["JumpFlag"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["RightTextHolder"],
+                    FontFace = Library.SmallestPixel,
+                    TextSize = 9,
+                    LayoutOrder = 2,
+                    TextColor3 = Color3.fromRGB(255, 255, 255),
+                    Text = "Jumping",
+                    TextXAlignment = Enum.TextXAlignment.Left,
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    ZIndex = 5,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["JumpFlag"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["JumpFlag"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
 
-        Objects["Weapon"] = self:CreateObjects("TextLabel", {
-            Parent = Objects["BottomTextHolder"],
-            FontFace = Library.SmallestPixel,
-            TextSize = 9,
-            LayoutOrder = 3,
-            TextColor3 = Table['Texts']['Weapon']['Color'],
-            Text = "none",
-            TextXAlignment = Enum.TextXAlignment.Center,
-            BorderSizePixel = 0,
-            Visible = false,
-            BackgroundTransparency = 1,
-            ZIndex = 5,
-            AutomaticSize = Enum.AutomaticSize.XY,
-            Size = Dim2(0, 0, 0, 0),
-        })
+                Objects["Weapon"] = self:CreateObjects("TextLabel", {
+                    Parent = Objects["BottomTextHolder"],
+                    FontFace = Library.SmallestPixel,
+                    TextSize = 9,
+                    LayoutOrder = 3,
+                    TextColor3 = Table['Texts']['Weapon']['Color'],
+                    Text = "none",
+                    TextXAlignment = Enum.TextXAlignment.Center,
+                    BorderSizePixel = 0,
+                    Visible = false,
+                    BackgroundTransparency = 1,
+                    ZIndex = 5,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    Size = Dim2(0, 0, 0, 0),
+                })
 
-        self:CreateObjects("UIStroke", {
-            Parent = Objects["Weapon"],
-            Color = Color3.fromRGB(0, 0, 0),
-            LineJoinMode = Enum.LineJoinMode.Miter,
-        })
-    end
-end
+                self:CreateObjects("UIStroke", {
+                    Parent = Objects["Weapon"],
+                    Color = Color3.fromRGB(0, 0, 0),
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                })
+            end
+        end
 
         function Library:CalculateBox(Data)
             local RootPart = Data['RootPart']
