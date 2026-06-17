@@ -318,28 +318,28 @@
                     Parent = Objects["TopTextHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 2),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["BottomTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 0),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["LeftTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Right,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 0),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["RightTextHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Left,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 0),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
@@ -347,14 +347,14 @@
                     Parent = Objects["LeftBarHolder"],
                     FillDirection = Enum.FillDirection.Horizontal,
                     HorizontalAlignment = Enum.HorizontalAlignment.Right,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 5),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
                 self:CreateObjects("UIListLayout", {
                     Parent = Objects["BottomBarHolder"],
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 1),
+                    Padding = Dim(0, 5),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
