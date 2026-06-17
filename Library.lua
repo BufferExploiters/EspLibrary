@@ -142,7 +142,7 @@
             Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
         end
 
-        Library.__index = Library; print("hello")
+        Library.__index = Library;
 
         function Library:CreateObjects(Name, Prop)
             local New = Instance.new(Name);
