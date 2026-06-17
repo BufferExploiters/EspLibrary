@@ -142,7 +142,7 @@
             Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
         end
 
-        Library.__index = Library;
+        Library.__index = Library; print("hello")
 
         function Library:CreateObjects(Name, Prop)
             local New = Instance.new(Name);
@@ -318,7 +318,7 @@
                     Parent = Objects["TopTextHolder"],
                     VerticalAlignment = Enum.VerticalAlignment.Bottom,
                     HorizontalAlignment = Enum.HorizontalAlignment.Center,
-                    Padding = Dim(0, 2),
+                    Padding = Dim(0, 111),
                     SortOrder = Enum.SortOrder.LayoutOrder,
                 })
 
