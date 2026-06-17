@@ -674,7 +674,7 @@
             do
                 Objects["TargetName"] = self:CreateObjects("TextLabel", {
                     Parent = Objects["TopTextHolder"],
-                    FontFace = Library.ProggyClean,
+                    FontFace = Library.Tahoma,
                     TextSize = 12,
                     LayoutOrder = 2,
                     TextColor3 = Table['Texts']['Name']['Color'],
