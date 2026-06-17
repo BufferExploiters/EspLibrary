@@ -411,12 +411,12 @@
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftBarHolder"],
-                    PaddingRight = Dim(0, 1),
+                    PaddingRight = Dim(0, 2),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomBarHolder"],
-                    PaddingTop = Dim(0, 1),
+                    PaddingTop = Dim(0, 2),
                 })
 
                 self:CreateObjects("UIPadding", {
