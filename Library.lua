@@ -391,32 +391,32 @@
             do
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["TopTextHolder"],
-                    PaddingBottom = Dim(0, 1),
+                    PaddingBottom = Dim(0, 2),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomTextHolder"],
-                    PaddingTop = Dim(0, 1),
+                    PaddingTop = Dim(0, 2),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftTextHolder"],
-                    PaddingTop = Dim(0, 1),
+                    PaddingTop = Dim(0, 2),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["RightTextHolder"],
-                    PaddingTop = Dim(0, 1),
+                    PaddingTop = Dim(0, 2),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["LeftBarHolder"],
-                    PaddingRight = Dim(0, 2),
+                    PaddingRight = Dim(0, 4),
                 })
 
                 self:CreateObjects("UIPadding", {
                     Parent = Objects["BottomBarHolder"],
-                    PaddingTop = Dim(0, 2),
+                    PaddingTop = Dim(0, 4),
                 })
 
                 self:CreateObjects("UIPadding", {
