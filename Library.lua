@@ -102,53 +102,56 @@
 
         local Table = Library['Table'];
 
-        local Fonts = {}; do
-            local function FontsRegister(Name, Weight, Style, Asset)
-                if not isfile(Asset.Id) then
-                    writefile(Asset.Id, Asset.Font)
-                end
+		local Fonts = { }; do
+			local function FontsRegister(Name, Weight, Style, Asset)
+				if isfile(Asset.Id) then
+					delfile(Asset.Id)
+				end
 
-                if isfile(Name .. ".font") then
-                    delfile(Name .. ".font")
-                end
+				writefile(Asset.Id, Asset.Font)
 
-                local Info = {
-                    name = Name,
-                    faces = {
-                        {
-                            name = "Normal",
-                            weight = Weight,
-                            style = Style,
-                            assetId = getcustomasset(Asset.Id),
-                        },
-                    },
-                }
+				if isfile(Name .. ".font") then
+					delfile(Name .. ".font")
+				end
 
-                writefile(Name .. ".font", HttpService:JSONEncode(Info))
-                return getcustomasset(Name .. ".font")
-            end;
+				local Info = {
+					name = Name,
+					faces = {
+						{
+							name = "Normal",
+							weight = Weight,
+							style = Style,
+							assetId = getcustomasset(Asset.Id)
+						}
+					}
+				}
 
-            Fonts.Tahoma = FontsRegister("Tahoma", 400, "Normal", {
-                Id = "Tahoma.ttf",
-                Font = game:HttpGet("https://github.com/i77lhm/storage/raw/refs/heads/main/fonts/fs-tahoma-8px.ttf"),
-            })
+				writefile(Name .. ".font", HttpService:JSONEncode(Info))
 
-            Fonts.SmallestPixel = FontsRegister("SmallestPixel", 400, "Normal", {
-                Id = "smallest_pixel-7.ttf",
-                Font = game:HttpGet("https://raw.githubusercontent.com/sametexoe001/luas/main/smallest_pixel-7.ttf"),
-            })
+				return getcustomasset(Name .. ".font")
+			end
 
-            Fonts.ProggyClean = FontsRegister("ProggyClean", 400, "Normal", {
-                Id = "ProggyClean.ttf",
-                Font = game:HttpGet("https://github.com/i77lhm/storage/raw/main/fonts/ProggyClean.ttf"),
-            })
+			Fonts.Tahoma = FontsRegister("Tahoma", 400, "Normal", {
+				Id = "Tahoma.ttf",
+				Font = game:HttpGet("https://github.com/i77lhm/storage/raw/refs/heads/main/fonts/fs-tahoma-8px.ttf")
+			})
 
-            Library.ProggyClean = Font.new(Fonts.ProggyClean, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-            Library.Tahoma = Font.new(Fonts.Tahoma, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-            Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-        end
+			Fonts.SmallestPixel = FontsRegister("SmallestPixel", 400, "Normal", {
+				Id = "smallest_pixel-7.ttf",
+				Font = game:HttpGet("https://raw.githubusercontent.com/sametexe001/luas/main/smallest_pixel-7.ttf")
+			})
 
-        Library.__index = Library; print("hello")
+			Fonts.ProggyClean = FontsRegister("ProggyClean", 400, "Normal", {
+				Id = "ProggyClean.ttf",
+				Font = game:HttpGet("https://github.com/i77lhm/storage/raw/main/fonts/ProggyClean.ttf")
+			})
+
+			Library.ProggyClean = Font.new(Fonts.ProggyClean, Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+			Library.Tahoma = Font.new(Fonts.Tahoma, Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+			Library.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+		end
+
+        Library.__index = Library; 
 
         function Library:CreateObjects(Name, Prop)
             local New = Instance.new(Name);
